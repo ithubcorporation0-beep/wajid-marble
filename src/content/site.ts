@@ -371,8 +371,21 @@ export const contact: ContactContent = {
   form: {
     title: "Request a quote",
     subtitle: "Tell us about your project — we'll reply with pricing and timelines.",
+    fields: {
+      name: { label: "Full name", placeholder: "Your name" },
+      phone: { label: "Phone number", placeholder: "03XX-XXXXXXX" },
+      stone: { label: "Stone type" },
+      details: { label: "Project details", placeholder: "Area, location, timeline..." },
+    },
     submitLabel: "Send Request",
+    submitLabelPending: "Sending…",
     note: `Or call ${formatLocalPhone(business.phones.primary)} directly for a faster response.`,
+    messages: {
+      validationError: "Please fix the highlighted fields below.",
+      genericError: "Something went wrong. Please call or WhatsApp us instead.",
+      networkError: "Couldn't reach the server. Please call or WhatsApp us instead.",
+      success: "Request sent — we'll be in touch shortly.",
+    },
   },
 };
 

@@ -157,11 +157,36 @@ export interface ContactMethod {
   action?: string;
 }
 
+/** Label + placeholder text for one text/textarea field in the quote form. */
+export interface QuoteFormFieldCopy {
+  label: string;
+  placeholder: string;
+}
+
+/** Every status message QuoteForm can show after a submit attempt. */
+export interface QuoteFormMessages {
+  validationError: string;
+  genericError: string;
+  networkError: string;
+  success: string;
+}
+
 export interface ContactFormCopy {
   title: string;
   subtitle: string;
+  fields: {
+    name: QuoteFormFieldCopy;
+    phone: QuoteFormFieldCopy;
+    /** The stone dropdown has no placeholder — it always shows a real
+     * option — so it only needs a label. */
+    stone: { label: string };
+    details: QuoteFormFieldCopy;
+  };
   submitLabel: string;
+  /** Shown on the submit button while a request is in flight. */
+  submitLabelPending: string;
   note: string;
+  messages: QuoteFormMessages;
 }
 
 export interface ContactContent extends SectionIntro {

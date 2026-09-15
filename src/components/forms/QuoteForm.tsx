@@ -65,7 +65,7 @@ export default function QuoteForm() {
     if (!parsed.success) {
       applyFieldErrors(parsed.error.flatten().fieldErrors);
       setStatus("error");
-      setStatusMessage("Please fix the highlighted fields below.");
+      setStatusMessage(contact.form.messages.validationError);
       return;
     }
 
@@ -83,17 +83,13 @@ export default function QuoteForm() {
 
       if (!response.ok || !data.ok) {
         setStatus("error");
-        setStatusMessage(
-          typeof data.error === "string"
-            ? data.error
-            : "Something went wrong. Please call or WhatsApp us instead.",
-        );
+        setStatusMessage(typeof data.error === "string" ? data.error : contact.form.messages.genericError);
         if (data.fieldErrors) applyFieldErrors(data.fieldErrors);
         return; // never clear `values` — the visitor shouldn't have to retype anything
       }
 
       setStatus("success");
-      setStatusMessage("Request sent — we'll be in touch shortly.");
+      setStatusMessage(contact.form.messages.success);
 
       const message = buildQuoteMessage({
         name: values.name,
@@ -104,7 +100,7 @@ export default function QuoteForm() {
       window.open(buildWhatsAppLink(message), "_blank", "noopener");
     } catch {
       setStatus("error");
-      setStatusMessage("Couldn't reach the server. Please call or WhatsApp us instead.");
+      setStatusMessage(contact.form.messages.networkError);
     }
   }
 
@@ -113,12 +109,12 @@ export default function QuoteForm() {
   return (
     <form id="quoteForm" noValidate onSubmit={handleSubmit}>
       <div className="field">
-        <label htmlFor="fname">Full name</label>
+        <label htmlFor="fname">{contact.form.fields.name.label}</label>
         <input
           type="text"
           id="fname"
           name="fname"
-          placeholder="Your name"
+          placeholder={contact.form.fields.name.placeholder}
           value={values.name}
           onChange={(event) => updateField("name", event.target.value)}
           aria-invalid={Boolean(errors.name)}
@@ -132,12 +128,12 @@ export default function QuoteForm() {
       </div>
 
       <div className="field">
-        <label htmlFor="fphone">Phone number</label>
+        <label htmlFor="fphone">{contact.form.fields.phone.label}</label>
         <input
           type="tel"
           id="fphone"
           name="fphone"
-          placeholder="03XX-XXXXXXX"
+          placeholder={contact.form.fields.phone.placeholder}
           value={values.phone}
           onChange={(event) => updateField("phone", event.target.value)}
           aria-invalid={Boolean(errors.phone)}
@@ -151,7 +147,7 @@ export default function QuoteForm() {
       </div>
 
       <div className="field">
-        <label htmlFor="fstone">Stone type</label>
+        <label htmlFor="fstone">{contact.form.fields.stone.label}</label>
         <select
           id="fstone"
           name="fstone"
@@ -167,11 +163,11 @@ export default function QuoteForm() {
       </div>
 
       <div className="field">
-        <label htmlFor="fmsg">Project details</label>
+        <label htmlFor="fmsg">{contact.form.fields.details.label}</label>
         <textarea
           id="fmsg"
           name="fmsg"
-          placeholder="Area, location, timeline..."
+          placeholder={contact.form.fields.details.placeholder}
           value={values.details}
           onChange={(event) => updateField("details", event.target.value)}
           aria-invalid={Boolean(errors.details)}
@@ -199,7 +195,7 @@ export default function QuoteForm() {
       />
 
       <button type="submit" className="form-submit" disabled={isSubmitting} aria-busy={isSubmitting}>
-        {isSubmitting ? "Sending…" : contact.form.submitLabel}
+        {isSubmitting ? contact.form.submitLabelPending : contact.form.submitLabel}
       </button>
 
       {statusMessage && (
