@@ -156,14 +156,20 @@ you want to understand exactly how each size differs.
 
 Copy `.env.example` to `.env.local` for local development (that file is
 never committed to git — see `.gitignore`). They're all read and checked in
-`src/lib/env.ts`, which throws a clear error immediately if something
-required is missing or malformed, rather than failing confusingly later.
+`src/lib/env.ts`. None of them can cause the build itself to fail: a
+missing or malformed one is logged as a warning (check your host's build
+logs) and replaced with a safe fallback, rather than failing the whole
+deployment over one wrong variable.
 
-| Variable | Required? | What it's for |
+| Variable | What happens if it's missing | What it's for |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Yes | The site's own public address (no trailing slash), e.g. `https://wajidmarble.com`. Used to build the sitemap, robots.txt, and SEO metadata. |
-| `RESEND_API_KEY` | No | An API key from [Resend](https://resend.com), for emailing quote requests. |
-| `QUOTE_NOTIFY_EMAIL` | No | The address quote requests get emailed to. |
+| `NEXT_PUBLIC_SITE_URL` | Falls back to a placeholder (`https://example.com`) — the site still builds and works, but the sitemap, robots.txt and SEO tags point at the wrong address until you set this. | The site's own public address (no trailing slash), e.g. `https://wajidmarble.com`. |
+| `RESEND_API_KEY` | Quote requests are logged to the server console instead of emailed. | An API key from [Resend](https://resend.com), for emailing quote requests. |
+| `QUOTE_NOTIFY_EMAIL` | Same as above. | The address quote requests get emailed to. |
+
+**Set `NEXT_PUBLIC_SITE_URL` to your real deployment address as soon as you
+know it** — the site works without it, but search engines and shared links
+will see the wrong URL until it's set correctly.
 
 `RESEND_API_KEY` and `QUOTE_NOTIFY_EMAIL` work as a pair — set both to have
 quote requests emailed, or leave both blank to just have them logged to the

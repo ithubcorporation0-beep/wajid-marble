@@ -1,11 +1,17 @@
 // This file reads settings from the server's environment variables —
 // configuration and secrets that should never be hard-coded or committed to
 // git. It checks them with zod (a validation library) as soon as this file
-// is first imported, so a missing or malformed variable throws a clear
-// error immediately at startup instead of causing a confusing failure deep
-// inside a request handler later. Every other file that needs one of these
-// values should import `env` from here instead of reading `process.env`
-// directly. See .env.example for the checklist of variables this app uses.
+// is first imported. Unlike a lot of "validate your env" examples, a
+// missing or malformed variable here does NOT crash the build — it falls
+// back to a safe default and prints a warning instead. That trade-off is
+// deliberate: a build that refuses to complete over a misconfigured
+// environment variable is a build that can't go live at all, on any host,
+// until that one variable is exactly right — which is a worse failure mode
+// for a small business site than briefly running with a placeholder while
+// someone notices the warning and fixes the real value.
+// Every other file that needs one of these values should import `env` from
+// here instead of reading `process.env` directly. See .env.example for the
+// checklist of variables this app uses.
 //
 // IMPORTANT: any variable name starting with NEXT_PUBLIC_ is bundled into
 // the JavaScript sent to every visitor's browser and is visible to anyone
@@ -14,22 +20,25 @@
 // variables, which Next.js keeps server-only.
 import { z } from "zod";
 
-// Hosts differ on what an "unset" environment variable looks like. Vercel
-// (and some others) create the variable with an empty string the moment you
-// add its name in the dashboard, even before you type a value into it —
-// that's different from the variable being absent, which is what `.optional()`
-// alone checks for. Treating "" the same as "not set" here means an
-// optional variable someone added but left blank doesn't get rejected as
-// invalid.
+// Hosts differ on what an "unset" environment variable looks like. Some
+// (Vercel, Cloudflare) create the variable with an empty string the moment
+// you add its name in a dashboard, even before you type a value in — that's
+// different from the variable being absent, which is what `.optional()`
+// alone checks for. Treating "" the same as "not set" means a variable
+// someone added but left blank is treated as missing, not invalid.
 const emptyStringToUndefined = (value: unknown) => (value === "" ? undefined : value);
+
+/** Used only when NEXT_PUBLIC_SITE_URL isn't set to a real value yet. Every
+ * feature that reads `env.NEXT_PUBLIC_SITE_URL` still works with this — the
+ * sitemap, robots.txt and SEO tags will just point at the wrong address
+ * until the real one is set on whichever host is running the site. */
+const PLACEHOLDER_SITE_URL = "https://example.com";
 
 const envSchema = z.object({
   /** The site's own public address, e.g. "https://wajidmarble.com". Used to
    * build absolute URLs for SEO metadata, the sitemap, and JSON-LD — safe to
    * expose to the browser since it's just the site's own address. */
-  NEXT_PUBLIC_SITE_URL: z.url({
-    message: "NEXT_PUBLIC_SITE_URL must be a full URL, e.g. https://example.com",
-  }),
+  NEXT_PUBLIC_SITE_URL: z.preprocess(emptyStringToUndefined, z.url().optional()),
   /** Resend's API key, for emailing quote requests. Optional: when it's not
    * set, quote requests are just logged on the server instead of emailed. */
   RESEND_API_KEY: z.preprocess(emptyStringToUndefined, z.string().min(1).optional()),
@@ -41,14 +50,30 @@ const envSchema = z.object({
 
 const parsedEnv = envSchema.safeParse(process.env);
 
+// Anything that failed validation (present, but not a valid URL/email) is
+// dropped rather than allowed to crash the build — logged loudly so it
+// still gets noticed and fixed, just not at the cost of a dead deployment.
+const validated = parsedEnv.success ? parsedEnv.data : {};
 if (!parsedEnv.success) {
   const issues = parsedEnv.error.issues
     .map((issue) => `  - ${issue.path.join(".") || "(root)"}: ${issue.message}`)
     .join("\n");
-  throw new Error(`Invalid environment variables:\n${issues}`);
+  console.warn(`[env] Ignoring invalid environment variable(s), using safe defaults instead:\n${issues}`);
 }
 
-export const env = parsedEnv.data;
+if (!validated.NEXT_PUBLIC_SITE_URL) {
+  console.warn(
+    `[env] NEXT_PUBLIC_SITE_URL is not set — using the placeholder "${PLACEHOLDER_SITE_URL}". ` +
+      "Set it to this site's real address in your host's environment variables so the sitemap, " +
+      "robots.txt and SEO tags point at the right place.",
+  );
+}
+
+export const env = {
+  NEXT_PUBLIC_SITE_URL: validated.NEXT_PUBLIC_SITE_URL ?? PLACEHOLDER_SITE_URL,
+  RESEND_API_KEY: validated.RESEND_API_KEY,
+  QUOTE_NOTIFY_EMAIL: validated.QUOTE_NOTIFY_EMAIL,
+};
 
 /** True only when both the Resend API key and a notify address are set —
  * i.e. when src/lib/notify.ts has everything it needs to actually send an
