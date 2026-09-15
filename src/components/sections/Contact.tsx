@@ -1,11 +1,11 @@
 // The "Get In Touch" section: the list of ways to reach the business next to
-// the quote request form. The form itself (QuoteForm, a client component)
-// is deliberately not wired in yet — this section renders a plain
-// placeholder in its place until the form is built.
+// the quote request form (QuoteForm, a client component — everything else
+// on this page stays server-rendered).
 import type { ReactNode } from "react";
 import { contact, contactMethods } from "@/content/site";
 import type { ContactMethodIcon } from "@/types";
 import Reveal from "@/components/ui/Reveal";
+import QuoteForm from "@/components/forms/QuoteForm";
 
 const ICONS: Record<ContactMethodIcon, ReactNode> = {
   phone: (
@@ -63,10 +63,7 @@ export default function Contact() {
           <Reveal className="form-card">
             <h3>{contact.form.title}</h3>
             <div className="sub">{contact.form.subtitle}</div>
-            <p style={{ color: "rgba(237,232,222,0.4)", fontSize: "0.85rem" }}>
-              The quote request form goes here — built in the next step.
-            </p>
-            <div className="form-note">{contact.form.note}</div>
+            <QuoteForm />
           </Reveal>
         </div>
       </div>
