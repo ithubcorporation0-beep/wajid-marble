@@ -80,30 +80,6 @@
 }
 @media(min-width:820px){ .hero-meta{display:block;} }
 
-/* ---------- section headers ---------- */
-.section{padding:110px 0;}
-.section-tight{padding:80px 0;}
-.section-head{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:40px;
-  margin-bottom:56px;
-  flex-wrap:wrap;
-}
-.section-head .eyebrow{color:var(--gold);}
-.section-head .eyebrow::before{background:var(--gold);}
-.section-head h2{
-  font-size:clamp(2rem, 3.4vw, 2.9rem);
-  max-width:600px;
-}
-.section-head p{
-  max-width:340px;
-  color:var(--taupe);
-  font-size:0.95rem;
-  line-height:1.6;
-}
-
 /* ---------- about ---------- */
 .about{background:var(--charcoal);color:var(--stone);}
 .about .eyebrow{color:var(--gold-soft);}
@@ -140,7 +116,7 @@
   margin-bottom:10px;
 }
 .owner-card .name{
-  font-family:'Fraunces',serif;
+  font-family:var(--font-display), serif;
   font-size:1.6rem;
   margin-bottom:4px;
 }
@@ -158,7 +134,7 @@
   border-top:1px solid rgba(237,232,222,0.14);
 }
 .stat-row .num{
-  font-family:'Fraunces',serif;
+  font-family:var(--font-display), serif;
   font-size:1.9rem;
   color:var(--gold-soft);
 }
@@ -192,7 +168,7 @@
   background:linear-gradient(0deg, rgba(16,15,13,0.78) 0%, rgba(16,15,13,0) 100%);
   color:#F6F3EC;
 }
-.product-info .pname{font-family:'Fraunces',serif;font-size:1.15rem;margin-bottom:4px;}
+.product-info .pname{font-family:var(--font-display), serif;font-size:1.15rem;margin-bottom:4px;}
 .product-info .ptag{font-size:0.75rem;color:rgba(246,243,236,0.72);}
 
 /* ---------- why choose ---------- */
@@ -211,7 +187,7 @@
   padding:38px 30px;
 }
 .why-item .idx{
-  font-family:'Fraunces',serif;
+  font-family:var(--font-display), serif;
   font-style:italic;
   color:var(--gold);
   font-size:1.05rem;
@@ -296,7 +272,7 @@
   flex-shrink:0;
 }
 .cm-label{font-size:0.72rem;color:rgba(237,232,222,0.5);letter-spacing:0.08em;text-transform:uppercase;}
-.cm-value{font-family:'Fraunces',serif;font-size:1.2rem;margin-top:2px;}
+.cm-value{font-family:var(--font-display), serif;font-size:1.2rem;margin-top:2px;}
 .cm-action{
   font-size:0.8rem;
   color:var(--gold-soft);
@@ -330,7 +306,7 @@
   border:none;
   border-bottom:1px solid rgba(237,232,222,0.3);
   color:var(--stone);
-  font-family:'Inter',sans-serif;
+  font-family:var(--font-sans), sans-serif;
   font-size:0.95rem;
   padding:9px 2px;
   outline:none;

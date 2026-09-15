@@ -28,7 +28,7 @@ header{
   gap:10px;
 }
 .brand .mark{
-  font-family:'Fraunces',serif;
+  font-family:var(--font-display), serif;
   font-weight:600;
   font-size:1.28rem;
   letter-spacing:0.01em;
@@ -89,7 +89,7 @@ footer{
   color:rgba(237,232,222,0.5);
   font-size:0.8rem;
 }
-.footer-row .fmark{font-family:'Fraunces',serif;color:rgba(237,232,222,0.8);}
+.footer-row .fmark{font-family:var(--font-display), serif;color:rgba(237,232,222,0.8);}
 .footer-links{display:flex;gap:22px;}
 .footer-links a:hover{color:var(--gold-soft);}
 
@@ -131,7 +131,7 @@ footer{
   gap:26px;
 }
 .mobile-drawer nav a{
-  font-family:'Fraunces',serif;
+  font-family:var(--font-display), serif;
   font-size:1.7rem;
   color:var(--stone);
 }
