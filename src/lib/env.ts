@@ -14,6 +14,15 @@
 // variables, which Next.js keeps server-only.
 import { z } from "zod";
 
+// Hosts differ on what an "unset" environment variable looks like. Vercel
+// (and some others) create the variable with an empty string the moment you
+// add its name in the dashboard, even before you type a value into it —
+// that's different from the variable being absent, which is what `.optional()`
+// alone checks for. Treating "" the same as "not set" here means an
+// optional variable someone added but left blank doesn't get rejected as
+// invalid.
+const emptyStringToUndefined = (value: unknown) => (value === "" ? undefined : value);
+
 const envSchema = z.object({
   /** The site's own public address, e.g. "https://wajidmarble.com". Used to
    * build absolute URLs for SEO metadata, the sitemap, and JSON-LD — safe to
@@ -23,11 +32,11 @@ const envSchema = z.object({
   }),
   /** Resend's API key, for emailing quote requests. Optional: when it's not
    * set, quote requests are just logged on the server instead of emailed. */
-  RESEND_API_KEY: z.string().min(1).optional(),
+  RESEND_API_KEY: z.preprocess(emptyStringToUndefined, z.string().min(1).optional()),
   /** Which address quote request emails get sent to. Optional for the same
    * reason as RESEND_API_KEY — both are required together for email to
    * actually go out (see `emailNotificationsEnabled` below). */
-  QUOTE_NOTIFY_EMAIL: z.email().optional(),
+  QUOTE_NOTIFY_EMAIL: z.preprocess(emptyStringToUndefined, z.email().optional()),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
