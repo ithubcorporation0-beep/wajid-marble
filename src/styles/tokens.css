@@ -1,0 +1,17 @@
+/*
+  Design tokens: the site's color palette, as a set of named CSS variables.
+  Every other stylesheet in this project should reference these variables
+  (e.g. var(--gold)) instead of writing color values directly, so the whole
+  site's palette can be changed by editing only this one file.
+  Copied unchanged from _reference/wajid-marble-factory.html.
+*/
+:root{
+  --stone:#EDE8DE;
+  --stone-deep:#E2DBCC;
+  --charcoal:#1B1916;
+  --onyx:#100F0D;
+  --taupe:#8B8275;
+  --gold:#A9803F;
+  --gold-soft:#C9A870;
+  --line:rgba(27,25,22,0.14);
+}

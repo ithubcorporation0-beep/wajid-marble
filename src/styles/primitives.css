@@ -1,0 +1,65 @@
+/*
+  Primitives: small, reusable pieces used in more than one place on the site
+  — the page-width wrapper, buttons, the small gold "eyebrow" label above
+  headings, the decorative vein-divider line, and the fade-in-on-scroll
+  animation. These map to the components in src/components/ui.
+  Copied unchanged from _reference/wajid-marble-factory.html.
+*/
+
+/* ---------- page-width wrapper ---------- */
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 32px;
+}
+@media(max-width:640px){ .wrap{padding:0 20px;} }
+
+/* ---------- vein divider (signature element) ---------- */
+.vein-divider{width:100%;height:26px;opacity:0.55;}
+.vein-divider path{
+  fill:none;
+  stroke:var(--gold);
+  stroke-width:1.1;
+  stroke-linecap:round;
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:11px 22px;
+  font-size:0.82rem;
+  letter-spacing:0.03em;
+  border-radius:2px;
+  border:1px solid var(--charcoal);
+  transition:all .25s ease;
+  white-space:nowrap;
+}
+.btn-solid{
+  background:var(--charcoal);
+  color:var(--stone);
+}
+.btn-solid:hover{background:var(--gold);border-color:var(--gold);}
+.btn-ghost:hover{background:var(--charcoal);color:var(--stone);}
+
+/* ---------- eyebrow label ---------- */
+.eyebrow{
+  font-size:0.74rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold-soft);
+  margin-bottom:22px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.eyebrow::before{
+  content:'';
+  width:34px;height:1px;
+  background:var(--gold-soft);
+}
+
+/* ---------- reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1;transform:translateY(0);}

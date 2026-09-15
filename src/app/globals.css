@@ -1,0 +1,13 @@
+/*
+  This is the one stylesheet Next.js loads for every page. It doesn't define
+  any styles itself — it just pulls in the site's style files in the order
+  they need to be read: color tokens first, then base element resets, then
+  small reusable pieces, then layout chrome, then the page sections. Keeping
+  the order matters because later files can rely on the tokens defined in
+  earlier ones.
+*/
+@import "../styles/tokens.css";
+@import "../styles/base.css";
+@import "../styles/primitives.css";
+@import "../styles/layout.css";
+@import "../styles/sections.css";

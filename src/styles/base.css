@@ -1,0 +1,29 @@
+/*
+  Base styles: the site-wide reset and defaults that apply to plain HTML
+  elements (body, headings, links, lists, images) before any component-level
+  styling is added. Also turns off animations for visitors who have asked
+  their device to reduce motion.
+  Copied unchanged from _reference/wajid-marble-factory.html.
+*/
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--stone);
+  color:var(--charcoal);
+  font-family:'Inter',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,.display{
+  font-family:'Fraunces',serif;
+  font-weight:500;
+  letter-spacing:-0.01em;
+}
+a{text-decoration:none;color:inherit;}
+ul{list-style:none;}
+img,svg{display:block;max-width:100%;}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *{animation:none !important; transition:none !important;}
+}
