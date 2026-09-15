@@ -13,6 +13,9 @@
 // src/styles/base.css and other stylesheets reference.
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import SiteHeader from "@/components/layout/SiteHeader";
+import SiteFooter from "@/components/layout/SiteFooter";
+import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -41,7 +44,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fraunces.variable} ${inter.variable}`}>{children}</body>
+      <body className={`${fraunces.variable} ${inter.variable}`}>
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+        <FloatingWhatsApp />
+      </body>
     </html>
   );
 }

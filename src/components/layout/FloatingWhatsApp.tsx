@@ -1,8 +1,19 @@
-// This is the round WhatsApp button that floats in the corner of the screen
-// on every page, letting a visitor start a chat in one tap. It has no
-// markup or content yet — that's added in a later step, once the WhatsApp
-// number and link-building logic (src/lib/whatsapp.ts) are in place.
+// The round WhatsApp button that floats in the bottom-right corner on every
+// page. Purely a link (no state), so it stays a server component.
+import { business, floatingWhatsApp } from "@/content/site";
 
 export default function FloatingWhatsApp() {
-  return null;
+  return (
+    <a
+      href={`https://wa.me/${business.whatsappNumber}`}
+      target="_blank"
+      rel="noopener"
+      className="float-wa"
+      aria-label={floatingWhatsApp.ariaLabel}
+    >
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+        <path d="M17.6 6.32A7.85 7.85 0 0 0 12.05 4c-4.4 0-7.98 3.58-7.98 7.98 0 1.4.37 2.78 1.07 4L4 20.5l4.64-1.12a7.96 7.96 0 0 0 3.4.76h.01c4.4 0 7.98-3.58 7.98-7.98 0-2.13-.83-4.13-2.43-5.84zM12.05 18.8h-.01a6.63 6.63 0 0 1-3.37-.92l-.24-.14-2.5.61.6-2.44-.16-.25a6.62 6.62 0 0 1-1.02-3.5c0-3.65 2.97-6.62 6.63-6.62 1.77 0 3.43.69 4.68 1.94a6.58 6.58 0 0 1 1.94 4.67c0 3.65-2.97 6.65-6.55 6.65zm3.63-4.97c-.2-.1-1.17-.58-1.35-.64-.18-.07-.31-.1-.44.1-.13.2-.5.64-.62.77-.11.13-.23.14-.42.05-.2-.1-.83-.31-1.58-.98-.58-.52-.98-1.16-1.09-1.36-.11-.2-.01-.3.09-.4.09-.1.2-.23.3-.35.1-.11.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.44-1.06-.6-1.45-.16-.38-.32-.33-.44-.33-.11 0-.24-.01-.37-.01-.13 0-.35.05-.53.25-.18.2-.7.68-.7 1.66 0 .98.72 1.93.82 2.06.1.13 1.4 2.14 3.4 3 .48.2.85.33 1.14.42.48.15.91.13 1.26.08.38-.06 1.17-.48 1.34-.94.16-.46.16-.86.11-.94-.05-.09-.18-.14-.38-.24z" />
+      </svg>
+    </a>
+  );
 }
