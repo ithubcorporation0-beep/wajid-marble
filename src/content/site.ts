@@ -113,17 +113,6 @@ export const hero: HeroContent = {
     },
   ],
   meta: ["Est. craftsmanship · Mardan Region", "Slabs polished on site"],
-  visualTexture: {
-    id: "texture-hero-visual",
-    baseColor: "#F1ECE0",
-    baseFrequency: "0.006 0.018",
-    numOctaves: 6,
-    seed: 314,
-    // Matches --gold (#A9803F) so the veining reads as the same gold used
-    // throughout the site, not an arbitrary color.
-    veinColor: [0.66, 0.5, 0.25, 0.6],
-    veinOpacity: 0.75,
-  },
 };
 
 // ----------------------------------------------------------------------------
