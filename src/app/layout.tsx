@@ -84,8 +84,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${inter.variable}`}>
+        {/* Lets someone using a keyboard (or a screen reader) jump straight
+            past the header's nav links to the page content, instead of
+            having to tab through every link in the header first on every
+            single page load. Invisible until it receives keyboard focus. */}
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         <SiteHeader />
-        {children}
+        <main id="main-content">{children}</main>
         <SiteFooter />
         <FloatingWhatsApp />
       </body>
