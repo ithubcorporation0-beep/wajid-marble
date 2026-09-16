@@ -93,8 +93,12 @@ export interface HeroContent {
   headingAccent: string;
   lead: string;
   actions: HeroAction[];
-  /** The two small lines in the bottom-right corner on wide screens. */
+  /** Two short lines shown under the actions on wide screens. */
   meta: string[];
+  /** The texture behind the book-matched marble panel on the hero's right
+   * side (see ui/MarblePanel.tsx). Broader, lower-frequency veining than
+   * the product/gallery textures, since it's shown much larger. */
+  visualTexture: MarbleTexture;
 }
 
 export interface AboutStat {
