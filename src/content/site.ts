@@ -60,6 +60,9 @@ export const business: Business = {
   },
   phones,
   whatsappNumber: phones.secondary,
+  serviceAreas: ["Mardan", "Nowshera", "Charsadda", "Swabi", "Peshawar"],
+  seoDescription:
+    "Marble, granite and golden onyx supplied and installed across Mardan, Khyber Pakhtunkhwa — factory-direct installation, every slab hand-checked.",
 };
 
 // ----------------------------------------------------------------------------

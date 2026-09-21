@@ -68,6 +68,17 @@ export interface Business {
   /** Which number WhatsApp chats go to (same value as one of the phones
    * above — never a separately-typed-out number). */
   whatsappNumber: string;
+  /** Cities/towns the business serves, `city` first. Used for the
+   * LocalBusiness JSON-LD `areaServed` field (see
+   * src/components/seo/LocalBusinessJsonLd.tsx) — not shown anywhere on
+   * the page yet, but real data crawlers can read. */
+  serviceAreas: string[];
+  /** The one canonical marketing description for this business — under
+   * 155 characters, mentions the core products/services and location.
+   * Used for both the homepage <meta name="description"> (see
+   * src/app/layout.tsx) and the JSON-LD `description` field, so the two
+   * never drift apart into two slightly different sentences. */
+  seoDescription: string;
 }
 
 /** The eyebrow/heading/description trio most sections open with. */

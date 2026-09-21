@@ -35,7 +35,13 @@ const inter = Inter({
   display: "swap",
 });
 
-const description = `Premium marble, granite and onyx cut, polished and installed by ${business.name} in ${business.city}, ${business.addressRegion}. Factory-direct pricing, every slab hand-checked before it leaves the yard.`;
+// The homepage's title leads with what people actually search for (the
+// service + the city) before the brand name — someone searching "marble
+// granite Mardan" recognizes this title as an answer faster than they'd
+// recognize the business name alone. Sub-pages (once they exist) use the
+// `template` below instead, which puts their own topic first and appends
+// the brand name.
+const homeTitle = "Marble & Granite in Mardan | Wajid Marble Factory";
 
 // Metadata Next.js turns into the page's <title>, <meta> tags, and the
 // preview cards shown when a link to this site is shared on social media or
@@ -47,13 +53,13 @@ export const metadata: Metadata = {
   // metadata that isn't already a full URL.
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: {
-    default: `${business.name} — ${business.city}, ${business.country}`,
+    default: homeTitle,
     // %s is replaced by a page's own title, e.g. a future "Gallery" page
     // would become "Gallery — Wajid Marble Factory" instead of repeating
     // the full business name and location on every single page.
     template: `%s — ${business.name}`,
   },
-  description,
+  description: business.seoDescription,
   keywords: [
     "marble factory Mardan",
     "granite supplier Mardan",
@@ -62,8 +68,8 @@ export const metadata: Metadata = {
     business.name,
   ],
   openGraph: {
-    title: business.name,
-    description,
+    title: homeTitle,
+    description: business.seoDescription,
     url: env.NEXT_PUBLIC_SITE_URL,
     siteName: business.name,
     locale: "en_US",
@@ -71,8 +77,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: business.name,
-    description,
+    title: homeTitle,
+    description: business.seoDescription,
   },
 };
 
