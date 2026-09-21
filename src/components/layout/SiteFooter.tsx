@@ -22,6 +22,7 @@ export default function SiteFooter() {
               {link.label}
             </a>
           ))}
+          <a href={footer.sitemapLink.href}>{footer.sitemapLink.label}</a>
         </div>
         <div>
           © {year} {business.name}. {footer.rightsSuffix}

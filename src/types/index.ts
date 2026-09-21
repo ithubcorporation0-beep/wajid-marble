@@ -204,6 +204,9 @@ export interface HeaderContent {
 
 export interface FooterContent {
   rightsSuffix: string;
+  /** Link to the machine-readable /sitemap.xml, shown alongside the other
+   * footer links for visitors/crawlers that go looking for it directly. */
+  sitemapLink: NavLink;
 }
 
 export interface FloatingWhatsAppContent {

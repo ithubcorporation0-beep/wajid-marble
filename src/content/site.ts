@@ -88,6 +88,7 @@ export const header: HeaderContent = {
 
 export const footer: FooterContent = {
   rightsSuffix: "All rights reserved.",
+  sitemapLink: { label: "Sitemap", href: "/sitemap.xml" },
 };
 
 export const floatingWhatsApp: FloatingWhatsAppContent = {
