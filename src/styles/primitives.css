@@ -115,3 +115,67 @@
 .skip-link:focus{
   top:12px;
 }
+
+/* ---------- service/utility page header (added for the SEO landing pages
+   under src/app/<slug>/page.tsx — every page besides the homepage opens
+   with one of these instead of the homepage's full-bleed .hero, since
+   they're plain documents, not the site's visual centerpiece) ---------- */
+.page-hero{
+  padding:150px 0 60px;
+  background:var(--stone-deep);
+}
+.page-hero h1{
+  font-size:clamp(2rem, 4vw, 3.2rem);
+  line-height:1.08;
+  max-width:680px;
+  margin-top:18px;
+}
+.page-hero-lead{
+  margin-top:20px;
+  max-width:560px;
+  color:var(--taupe);
+  font-size:1.02rem;
+  line-height:1.6;
+}
+@media(max-width:640px){ .page-hero{padding:130px 0 40px;} }
+
+/* ---------- breadcrumb trail (top of every sub-page) ---------- */
+.breadcrumbs ol{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  list-style:none;
+  padding:0;
+  margin:0 0 18px;
+  font-size:0.8rem;
+  color:var(--taupe);
+}
+.breadcrumbs li{display:flex;align-items:center;gap:6px;}
+.breadcrumbs a:hover{color:var(--gold);}
+
+/* ---------- responsive info-card grid (service page "what we supply" /
+   "where we install" lists — like .why-grid, but auto-fit rather than a
+   fixed 4 columns, since a page's item count varies from 1 to 6) ---------- */
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:16px;
+}
+.info-card{
+  background:var(--stone-deep);
+  border:1px solid var(--line);
+  border-radius:2px;
+  padding:26px 24px;
+}
+.info-card h3{font-size:1.05rem;margin-bottom:8px;font-weight:500;}
+.info-card p{font-size:0.88rem;color:var(--taupe);line-height:1.6;}
+
+/* ---------- FAQ list (service pages + FAQPage schema in FaqJsonLd.tsx) ---------- */
+.faq-list{margin-top:32px;}
+.faq-item{
+  padding:22px 0;
+  border-top:1px solid var(--line);
+}
+.faq-item:last-child{border-bottom:1px solid var(--line);}
+.faq-item h3{font-size:1.02rem;margin-bottom:8px;font-weight:500;}
+.faq-item p{font-size:0.92rem;color:var(--taupe);line-height:1.65;margin:0;}

@@ -238,7 +238,11 @@
   gap:70px;
 }
 @media(max-width:900px){ .contact-grid{grid-template-columns:1fr;gap:50px;} }
-.contact h2{
+/* Matches h1 too: the standalone /contact page renders this same heading
+   as an <h1> (see Contact.tsx's headingTag prop) since it's that page's
+   only heading, not a homepage sub-section — same text, same look either
+   way, just the semantically correct tag per page. */
+.contact h1, .contact h2{
   font-size:clamp(2rem,3.6vw,3rem);
   margin-bottom:20px;
   line-height:1.1;

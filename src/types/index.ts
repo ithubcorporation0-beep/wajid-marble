@@ -229,3 +229,80 @@ export interface FloatingWhatsAppContent {
 // its literal union type is derived there with `typeof stoneOptions[number]`
 // — that keeps the exact list of allowed strings in one place instead of
 // repeating them here.
+
+// ============================================================================
+// Service pages — the SEO landing pages under src/content/pages/, one file
+// per route (marble-in-mardan, granite-in-mardan, etc). Each is rendered
+// through the shared src/components/sections/ServicePageLayout.tsx.
+// ============================================================================
+
+/** One question/answer pair in a page's FAQ section. */
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+/** One thing this page says the factory supplies — a stone type, a finish,
+ * a size option. Reuses the same "idx/title/body"-shaped card grid as the
+ * homepage's Why Us section (see .why-grid in src/styles/primitives.css). */
+export interface SupplyItem {
+  name: string;
+  description: string;
+}
+
+/** One place/building type this page says the factory installs into. Kept
+ * as plain strings (not objects) since each is just a short label rendered
+ * in the same card grid as SupplyItem, with no separate description. */
+export type InstallLocation = string;
+
+/** All the content one service/location landing page needs — the shape
+ * every file in src/content/pages/ must match, and what
+ * ServicePageLayout.tsx renders. */
+export interface ServicePageContent {
+  /** URL segment, e.g. "marble-in-mardan" — the page lives at
+   * /marble-in-mardan. Must match the folder name under src/app/. */
+  slug: string;
+  /** Short label used in the breadcrumb trail and in nav/footer links —
+   * not the same as the full <title> tag, which is longer and keyword-led. */
+  navLabel: string;
+  seo: {
+    /** Full <title> tag text — unique per page, leads with the page's own
+     * keyword + "Mardan", not the business name (matches the homepage's
+     * title pattern — see src/app/layout.tsx). */
+    title: string;
+    /** <meta name="description"> — unique per page, under ~155 characters. */
+    description: string;
+  };
+  hero: {
+    eyebrow: string;
+    /** Becomes this page's one <h1>. */
+    heading: string;
+    lead: string;
+  };
+  intro: {
+    heading: string;
+    paragraphs: string[];
+  };
+  supply: {
+    heading: string;
+    intro: string;
+    items: SupplyItem[];
+  };
+  installations: {
+    heading: string;
+    intro: string;
+    items: InstallLocation[];
+  };
+  faq: {
+    heading: string;
+    items: FaqItem[];
+  };
+}
+
+/** One crumb in a breadcrumb trail — see src/components/ui/Breadcrumbs.tsx
+ * and src/components/seo/BreadcrumbJsonLd.tsx. `href` is omitted for the
+ * current page, which renders as plain text rather than a link. */
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}

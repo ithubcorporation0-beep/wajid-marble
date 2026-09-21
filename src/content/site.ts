@@ -69,12 +69,18 @@ export const business: Business = {
 // Navigation (shared by the header, the mobile drawer, and the footer)
 // ----------------------------------------------------------------------------
 
+// These start with "/" (not just "#about") because SiteHeader/SiteFooter/
+// MobileDrawer render on every page now, not just the homepage — a bare
+// "#about" href would silently do nothing when clicked from, say,
+// /marble-in-mardan, since that page has no #about element to scroll to.
+// "/#about" always navigates to the homepage's section first, from
+// anywhere on the site.
 export const navLinks: NavLink[] = [
-  { label: "About", href: "#about" },
-  { label: "Products", href: "#products" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Why Us", href: "#why" },
-  { label: "Contact", href: "#contact" },
+  { label: "About", href: "/#about" },
+  { label: "Products", href: "/#products" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "Why Us", href: "/#why" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 // ----------------------------------------------------------------------------

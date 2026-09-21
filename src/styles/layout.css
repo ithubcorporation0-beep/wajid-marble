@@ -90,7 +90,10 @@ footer{
   font-size:0.8rem;
 }
 .footer-row .fmark{font-family:var(--font-display), serif;color:rgba(237,232,222,0.8);}
-.footer-links{display:flex;gap:22px;}
+/* flex-wrap added so the extra page links below (marble/granite/onyx/etc)
+   don't overflow the row on narrower screens now that .footer-links holds
+   more than the original 3 items. */
+.footer-links{display:flex;flex-wrap:wrap;gap:16px 22px;}
 .footer-links a:hover{color:var(--gold-soft);}
 
 /* ---------- floating whatsapp ---------- */
@@ -118,6 +121,11 @@ footer{
   padding:28px 32px;
   transform:translateX(100%);
   transition:transform .3s ease;
+  /* The drawer's nav list is longer now that it includes the service
+     pages alongside the original homepage sections — on a short phone
+     screen the full list plus the call button can be taller than the
+     viewport, so the drawer itself needs to scroll rather than clip. */
+  overflow-y:auto;
 }
 .mobile-drawer.open{transform:translateX(0);}
 .mobile-drawer .close-drawer{

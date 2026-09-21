@@ -3,9 +3,10 @@
 // on this page stays server-rendered).
 import type { ReactNode } from "react";
 import { contact, contactMethods } from "@/content/site";
-import type { ContactMethodIcon } from "@/types";
+import type { BreadcrumbItem, ContactMethodIcon } from "@/types";
 import Reveal from "@/components/ui/Reveal";
 import QuoteForm from "@/components/forms/QuoteForm";
+import Breadcrumbs from "@/components/ui/Breadcrumbs";
 
 const ICONS: Record<ContactMethodIcon, ReactNode> = {
   phone: (
@@ -26,12 +27,26 @@ const ICONS: Record<ContactMethodIcon, ReactNode> = {
   ),
 };
 
-export default function Contact() {
+export default function Contact({
+  headingTag: HeadingTag = "h2",
+  breadcrumbs,
+}: {
+  /** The homepage renders this section after the real <h1> in Hero, so its
+   * own heading is an <h2> by default. The standalone /contact page (see
+   * src/app/contact/page.tsx) reuses this exact component as the whole
+   * page, and needs that same heading to BE the page's one <h1> instead —
+   * passing headingTag="h1" swaps just the tag, not the text or styling. */
+  headingTag?: "h1" | "h2";
+  /** Only the standalone /contact page passes this — the homepage doesn't,
+   * so nothing renders there and its layout is unchanged. */
+  breadcrumbs?: BreadcrumbItem[];
+} = {}) {
   return (
     <section className="contact section" id="contact">
       <div className="wrap">
+        {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
         <div className="eyebrow">{contact.eyebrow}</div>
-        <h2>{contact.heading}</h2>
+        <HeadingTag>{contact.heading}</HeadingTag>
         <p className="lead">{contact.lead}</p>
 
         <div className="contact-grid" style={{ marginTop: 50 }}>

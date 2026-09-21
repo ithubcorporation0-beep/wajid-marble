@@ -18,7 +18,9 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 import { business, header, navLinks } from "@/content/site";
+import { pageNavLinks } from "@/content/pages";
 
 export default function MobileDrawer() {
   const [open, setOpen] = useState(false);
@@ -64,9 +66,14 @@ export default function MobileDrawer() {
             </button>
             <nav>
               {navLinks.map((link) => (
-                <a key={link.href} href={link.href} className="drawer-link" onClick={() => setOpen(false)}>
+                <Link key={link.href} href={link.href} className="drawer-link" onClick={() => setOpen(false)}>
                   {link.label}
-                </a>
+                </Link>
+              ))}
+              {pageNavLinks.map((link) => (
+                <Link key={link.href} href={link.href} className="drawer-link" onClick={() => setOpen(false)}>
+                  {link.label}
+                </Link>
               ))}
             </nav>
             <a
