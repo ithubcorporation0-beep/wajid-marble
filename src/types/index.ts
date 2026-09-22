@@ -63,6 +63,18 @@ export interface Business {
   country: string;
   /** ISO 3166-1 alpha-2 form, e.g. "PK" — used in structured data. */
   countryCode: string;
+  /** Street address for the factory/showroom — TODO: not yet provided by
+   * the business owner, left as an empty string until then. Consuming
+   * code (LocalBusinessJsonLd, the Contact section's location line) skips
+   * it entirely while blank rather than showing/emitting an empty value. */
+  streetAddress: string;
+  /** GPS coordinates for the factory/showroom, for Google Maps matching
+   * in structured data — TODO: not yet provided, left as empty strings.
+   * Kept as strings (not numbers) since an empty numeric field has no
+   * clean "unset" representation; LocalBusinessJsonLd omits the whole
+   * `geo` block while either is blank; a fabricated coordinate pair
+   * would be worse than none. */
+  geo: { latitude: string; longitude: string };
   owner: BusinessOwner;
   phones: PhoneNumbers;
   /** Which number WhatsApp chats go to (same value as one of the phones

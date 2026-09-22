@@ -56,6 +56,14 @@ export const business: Business = {
   addressRegion: "Khyber Pakhtunkhwa",
   country: "Pakistan",
   countryCode: "PK",
+  // TODO: get the exact street address from Nihad Ali and fill this in —
+  // structured data and the Contact section's location line both pick it
+  // up automatically the moment it's set, no other code changes needed.
+  streetAddress: "",
+  // TODO: get exact GPS coordinates for the factory/showroom (e.g.
+  // long-press the location in Google Maps and copy the lat/long shown)
+  // and fill these in — same auto-pickup as streetAddress above.
+  geo: { latitude: "", longitude: "" },
   owner: {
     name: "Nihad Ali",
     role: "Zonal Vice Chairman, Mardan",
@@ -493,7 +501,9 @@ export const contactMethods: ContactMethod[] = [
     id: "location",
     icon: "pin",
     label: "Factory & Showroom",
-    value: `${business.city}, KP`,
+    // Picks up business.streetAddress automatically once it's filled in —
+    // see the TODO on that field.
+    value: business.streetAddress ? `${business.streetAddress}, ${business.city}, KP` : `${business.city}, KP`,
   },
 ];
 

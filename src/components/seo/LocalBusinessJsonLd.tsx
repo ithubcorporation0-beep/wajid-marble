@@ -26,10 +26,24 @@ function buildLocalBusinessJsonLd() {
     telephone: [`+${business.phones.primary}`, `+${business.phones.secondary}`],
     address: {
       "@type": "PostalAddress",
+      // Omitted while business.streetAddress is still the empty-string
+      // TODO placeholder — a blank streetAddress is worse than none.
+      ...(business.streetAddress ? { streetAddress: business.streetAddress } : {}),
       addressLocality: business.city,
       addressRegion: business.addressRegion,
       addressCountry: business.countryCode,
     },
+    // Omitted entirely while business.geo is still its empty-string TODO
+    // placeholder, for the same reason — see the field's own comment.
+    ...(business.geo.latitude && business.geo.longitude
+      ? {
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: business.geo.latitude,
+            longitude: business.geo.longitude,
+          },
+        }
+      : {}),
     areaServed: business.serviceAreas,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
