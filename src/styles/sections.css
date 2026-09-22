@@ -160,7 +160,7 @@
   border:1px solid var(--line);
   cursor:default;
 }
-.product-card svg{width:100%;height:100%;position:absolute;inset:0;}
+.product-card svg,.product-card img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;}
 .product-info{
   position:absolute;
   left:0;right:0;bottom:0;
@@ -228,7 +228,7 @@
   border-radius:2px;
   border:1px solid var(--line);
 }
-.gallery-grid svg{width:100%;height:100%;position:absolute;inset:0;}
+.gallery-grid svg,.gallery-grid img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;}
 
 /* ---------- contact ---------- */
 .contact{background:var(--onyx);color:var(--stone);position:relative;overflow:hidden;}

@@ -151,10 +151,13 @@ export const about: AboutContent = {
 };
 
 // ----------------------------------------------------------------------------
-// Products — the marble/stone textures are recipes for the feTurbulence SVG
-// filter in ui/MarbleSwatch.tsx, not real photos. Each `id` is unique across
-// the whole page (SVG filter ids are global), and the numbers underneath are
-// copied exactly from the original design so the look doesn't change.
+// Products — the marble/stone textures are recipes for an feTurbulence SVG
+// filter, not real photos. They're pre-rendered to static images (see
+// ui/MarbleImage.tsx and scripts/generate-textures.mjs) rather than drawn as
+// a live filter on every page load. Each `id` doubles as the generated
+// image's filename (public/textures/<id>.jpg) — rename one here and
+// regenerate, don't just edit the recipe underneath it. The numbers below
+// are copied exactly from the original design so the look doesn't change.
 // ----------------------------------------------------------------------------
 
 const whiteCarraraTexture: MarbleTexture = {

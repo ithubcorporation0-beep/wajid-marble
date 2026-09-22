@@ -1,6 +1,6 @@
 // The full-height introduction visitors see first. The turbulent
 // marble-texture background here is a one-off (a gradient plus a filter
-// region that's shaped differently from the reusable MarbleSwatch recipe),
+// region that's shaped differently from the reusable MarbleTexture recipe),
 // so — unlike the product/gallery textures — it's just written directly as
 // markup rather than modeled as content data. Nothing here is interactive,
 // so this stays a server component.

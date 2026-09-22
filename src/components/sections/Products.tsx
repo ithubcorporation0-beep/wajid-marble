@@ -1,9 +1,10 @@
 // The "What We Offer" section: a grid of stone product cards. Each card's
-// texture is drawn by MarbleSwatch from data in src/content/site.ts, instead
-// of 4 copies of the same inline SVG markup.
+// texture is a pre-rendered static image (MarbleImage) built from a recipe
+// in src/content/site.ts, instead of 4 copies of the same inline SVG markup
+// (see MarbleImage.tsx for why it's an image rather than a live filter).
 import { products } from "@/content/site";
 import Reveal from "@/components/ui/Reveal";
-import MarbleSwatch from "@/components/ui/MarbleSwatch";
+import MarbleImage from "@/components/ui/MarbleImage";
 
 export default function Products() {
   return (
@@ -20,7 +21,7 @@ export default function Products() {
         <div className="products-grid">
           {products.items.map((product) => (
             <Reveal key={product.id} className="product-card">
-              <MarbleSwatch texture={product.texture} viewBox="0 0 300 400" />
+              <MarbleImage texture={product.texture} eager />
               <div className="product-info">
                 <div className="pname">{product.name}</div>
                 <div className="ptag">{product.tag}</div>

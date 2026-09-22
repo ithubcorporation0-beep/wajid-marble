@@ -20,9 +20,21 @@ import SiteFooter from "@/components/layout/SiteFooter";
 import FloatingWhatsApp from "@/components/layout/FloatingWhatsApp";
 import "./globals.css";
 
+// Weights/styles trimmed to exactly what src/styles/*.css and the
+// components actually set — verified by grepping every font-weight and
+// font-style declaration in the project, not guessed. Fraunces is used at
+// 400 (body-sized display text like product names), 500 (all headings —
+// the base h1/h2/h3/.display rule) and 600 (the header/footer logo mark),
+// normal style plus italic only at 400 (the hero's accent line and the Why
+// Us section's numbered index). Inter is used at 400 (body text) and 600
+// (buttons) — nothing in this codebase ever sets font-weight:500 or bold
+// on sans-serif text, so those weight files would just be dead bytes sent
+// to every visitor. If a future change needs a weight not listed here,
+// add it back rather than reaching for an inline font-weight that isn't
+// actually loaded.
 const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
@@ -30,7 +42,7 @@ const fraunces = Fraunces({
 
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-sans",
   display: "swap",
 });
@@ -115,6 +127,15 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
+        {/* Every section wrapped in <Reveal> (src/components/ui/Reveal.tsx)
+            starts at opacity:0 in CSS and depends on that component's JS to
+            become visible. With scripting fully disabled, that JS never
+            runs at all, so this override — which only exists in a
+            noscript-disabled browser — forces those sections visible
+            instead of leaving them permanently blank. */}
+        <noscript>
+          <style>{".reveal{opacity:1 !important;transform:none !important;}"}</style>
+        </noscript>
         <SiteHeader />
         <main id="main-content">{children}</main>
         <SiteFooter />

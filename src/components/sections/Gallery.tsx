@@ -3,7 +3,7 @@
 // src/styles/sections.css.
 import { gallery } from "@/content/site";
 import Reveal from "@/components/ui/Reveal";
-import MarbleSwatch from "@/components/ui/MarbleSwatch";
+import MarbleImage from "@/components/ui/MarbleImage";
 
 export default function Gallery() {
   return (
@@ -20,7 +20,7 @@ export default function Gallery() {
         <Reveal className="gallery-grid">
           {gallery.tiles.map((tile) => (
             <div key={tile.id} className={tile.gridClass}>
-              <MarbleSwatch texture={tile.texture} viewBox={tile.viewBox} alt={tile.alt} />
+              <MarbleImage texture={tile.texture} alt={tile.alt} />
             </div>
           ))}
         </Reveal>
