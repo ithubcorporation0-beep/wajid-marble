@@ -60,6 +60,9 @@ export const metadata: Metadata = {
     template: `%s — ${business.name}`,
   },
   description: business.seoDescription,
+  alternates: {
+    canonical: env.NEXT_PUBLIC_SITE_URL,
+  },
   keywords: [
     "marble factory Mardan",
     "granite supplier Mardan",
@@ -79,6 +82,21 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: homeTitle,
     description: business.seoDescription,
+  },
+  // Explicit rather than relying on Next.js's default — states plainly that
+  // every page should be indexed and followed, and asks Google specifically
+  // for large image previews and untruncated snippets in search results.
+  // Child routes inherit this from the root layout unless they set their
+  // own `robots` field (none currently do).
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

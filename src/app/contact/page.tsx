@@ -6,6 +6,7 @@
 // only heading, not one section among several.
 import type { Metadata } from "next";
 import type { BreadcrumbItem } from "@/types";
+import { env } from "@/lib/env";
 import Contact from "@/components/sections/Contact";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 
@@ -19,6 +20,7 @@ export function generateMetadata(): Metadata {
   return {
     title: { absolute: title },
     description,
+    alternates: { canonical: `${env.NEXT_PUBLIC_SITE_URL}/contact` },
     openGraph: { title, description },
   };
 }

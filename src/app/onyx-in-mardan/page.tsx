@@ -4,6 +4,7 @@
 // structured data.
 import type { Metadata } from "next";
 import type { BreadcrumbItem } from "@/types";
+import { env } from "@/lib/env";
 import { onyxInMardan } from "@/content/pages/onyx-in-mardan";
 import ServicePageLayout from "@/components/sections/ServicePageLayout";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
@@ -15,6 +16,7 @@ export function generateMetadata(): Metadata {
   return {
     title: { absolute: onyxInMardan.seo.title },
     description: onyxInMardan.seo.description,
+    alternates: { canonical: `${env.NEXT_PUBLIC_SITE_URL}/${onyxInMardan.slug}` },
     openGraph: { title: onyxInMardan.seo.title, description: onyxInMardan.seo.description },
   };
 }

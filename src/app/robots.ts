@@ -10,6 +10,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      // /api/quote has nothing worth indexing (it only accepts POST
+      // requests) and no reason to spend crawl budget on it.
+      disallow: "/api/",
     },
     sitemap: `${env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`,
   };

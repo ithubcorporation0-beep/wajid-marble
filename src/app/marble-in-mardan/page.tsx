@@ -4,6 +4,7 @@
 // metadata + structured data.
 import type { Metadata } from "next";
 import type { BreadcrumbItem } from "@/types";
+import { env } from "@/lib/env";
 import { marbleInMardan } from "@/content/pages/marble-in-mardan";
 import ServicePageLayout from "@/components/sections/ServicePageLayout";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
@@ -19,6 +20,7 @@ export function generateMetadata(): Metadata {
     // the business name again would show it twice.
     title: { absolute: marbleInMardan.seo.title },
     description: marbleInMardan.seo.description,
+    alternates: { canonical: `${env.NEXT_PUBLIC_SITE_URL}/${marbleInMardan.slug}` },
     openGraph: { title: marbleInMardan.seo.title, description: marbleInMardan.seo.description },
   };
 }

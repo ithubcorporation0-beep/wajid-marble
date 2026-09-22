@@ -4,6 +4,7 @@
 // page's own metadata + structured data.
 import type { Metadata } from "next";
 import type { BreadcrumbItem } from "@/types";
+import { env } from "@/lib/env";
 import { graniteKitchenCountertopsMardan } from "@/content/pages/granite-kitchen-countertops-mardan";
 import ServicePageLayout from "@/components/sections/ServicePageLayout";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
@@ -18,6 +19,7 @@ export function generateMetadata(): Metadata {
   return {
     title: { absolute: graniteKitchenCountertopsMardan.seo.title },
     description: graniteKitchenCountertopsMardan.seo.description,
+    alternates: { canonical: `${env.NEXT_PUBLIC_SITE_URL}/${graniteKitchenCountertopsMardan.slug}` },
     openGraph: {
       title: graniteKitchenCountertopsMardan.seo.title,
       description: graniteKitchenCountertopsMardan.seo.description,

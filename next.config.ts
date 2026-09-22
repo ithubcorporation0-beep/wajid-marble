@@ -86,6 +86,13 @@ const nextConfig: NextConfig = {
   // anyone probing the site exactly which framework (and often version) to
   // go look up known vulnerabilities for.
   poweredByHeader: false,
+  // Explicit rather than relying on the (matching) default: every internal
+  // link in this codebase is already written without a trailing slash
+  // (verified by grep across src/), so this just makes that a checked
+  // build-time contract instead of an implicit assumption — a page
+  // reachable at both /contact and /contact/ is duplicate content to
+  // search engines even though it's the same page to a visitor.
+  trailingSlash: false,
   async headers() {
     return [
       {

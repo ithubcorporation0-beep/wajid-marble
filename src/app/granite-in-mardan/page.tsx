@@ -4,6 +4,7 @@
 // metadata + structured data.
 import type { Metadata } from "next";
 import type { BreadcrumbItem } from "@/types";
+import { env } from "@/lib/env";
 import { graniteInMardan } from "@/content/pages/granite-in-mardan";
 import ServicePageLayout from "@/components/sections/ServicePageLayout";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
@@ -15,6 +16,7 @@ export function generateMetadata(): Metadata {
   return {
     title: { absolute: graniteInMardan.seo.title },
     description: graniteInMardan.seo.description,
+    alternates: { canonical: `${env.NEXT_PUBLIC_SITE_URL}/${graniteInMardan.slug}` },
     openGraph: { title: graniteInMardan.seo.title, description: graniteInMardan.seo.description },
   };
 }

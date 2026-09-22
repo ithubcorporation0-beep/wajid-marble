@@ -78,6 +78,27 @@ export const env = {
   QUOTE_NOTIFY_EMAIL: validated.QUOTE_NOTIFY_EMAIL,
 };
 
+// Everything above this line is deliberately non-fatal — a misconfigured
+// variable falls back to a safe default so a build can never fail over it.
+// This one check is the deliberate exception: DEFAULT_SITE_URL above is
+// already the site's real domain, so the only way NEXT_PUBLIC_SITE_URL can
+// still be "localhost" or "example.com" in a *production* build is if a
+// host's dashboard has it explicitly set to one of those — exactly the
+// broken-sitemap failure mode from earlier (Cloudflare silently served
+// example.com URLs for days). A loud build failure here, with a message
+// that says exactly what to fix, is better than a quiet wrong deploy.
+if (
+  process.env.NODE_ENV === "production" &&
+  (env.NEXT_PUBLIC_SITE_URL.includes("localhost") || env.NEXT_PUBLIC_SITE_URL.includes("example.com"))
+) {
+  throw new Error(
+    `[env] NEXT_PUBLIC_SITE_URL is set to "${env.NEXT_PUBLIC_SITE_URL}" in a production build — ` +
+      "that looks like a local development or placeholder address, not this site's real domain. " +
+      `Fix or remove NEXT_PUBLIC_SITE_URL in your host's environment variables (it should be unset, ` +
+      `or set to "${DEFAULT_SITE_URL}") and rebuild.`,
+  );
+}
+
 /** True only when both the Resend API key and a notify address are set —
  * i.e. when src/lib/notify.ts has everything it needs to actually send an
  * email instead of just logging the request. */
