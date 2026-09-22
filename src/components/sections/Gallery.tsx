@@ -20,7 +20,7 @@ export default function Gallery() {
         <Reveal className="gallery-grid">
           {gallery.tiles.map((tile) => (
             <div key={tile.id} className={tile.gridClass}>
-              <MarbleSwatch texture={tile.texture} viewBox={tile.viewBox} />
+              <MarbleSwatch texture={tile.texture} viewBox={tile.viewBox} alt={tile.alt} />
             </div>
           ))}
         </Reveal>

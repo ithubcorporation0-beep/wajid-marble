@@ -12,6 +12,7 @@ import type {
   Business,
   ContactContent,
   ContactMethod,
+  FaqItem,
   FloatingWhatsAppContent,
   FooterContent,
   GalleryContent,
@@ -21,6 +22,7 @@ import type {
   NavLink,
   ProductsContent,
   ReasonsContent,
+  SectionIntro,
 } from "@/types";
 
 // ----------------------------------------------------------------------------
@@ -110,9 +112,9 @@ export const floatingWhatsApp: FloatingWhatsAppContent = {
 
 export const hero: HeroContent = {
   eyebrow: `${business.name} — ${business.city}, ${business.country}`,
-  headingLead: "Marble & stone,",
+  headingLead: "Premium marble & granite in Mardan —",
   headingAccent: "carved for permanence.",
-  lead: `From block to polished slab — premium marble, granite and onyx cut, finished and installed under the direct supervision of ${business.owner.name}, ${business.owner.role}.`,
+  lead: `${business.name} is a marble, granite and onyx supplier in ${business.city}, cutting, polishing and installing every slab under the direct supervision of ${business.owner.name}, ${business.owner.role}.`,
   actions: [
     { label: "Request a Quote", href: "#contact", variant: "solid" },
     {
@@ -130,11 +132,12 @@ export const hero: HeroContent = {
 // ----------------------------------------------------------------------------
 
 export const about: AboutContent = {
-  eyebrow: "About the Factory",
-  heading: "Built on stone, run on trust.",
+  eyebrow: "Marble Factory in Mardan",
+  heading: "A marble factory in Mardan, built on trust.",
   paragraphs: [
     "Wajid Marble Factory has grown into a trusted name across Mardan for sourcing, cutting and finishing marble, granite and onyx for homes, mosques, offices and commercial spaces.",
     `Every slab that leaves the yard is checked by hand — for veining, tone and finish — before it reaches a client's site. That standard is set personally by the owner, ${business.owner.name}.`,
+    `Supplying and installing marble and granite across ${business.serviceAreas.slice(0, -1).join(", ")} and ${business.serviceAreas[business.serviceAreas.length - 1]}.`,
   ],
   owner: {
     ...business.owner,
@@ -195,33 +198,33 @@ const greyGraniteTexture: MarbleTexture = {
 };
 
 export const products: ProductsContent = {
-  eyebrow: "What We Offer",
-  heading: "Stone for every surface.",
+  eyebrow: "Marble, Granite & Onyx",
+  heading: "Marble, granite and onyx for every surface.",
   description:
     "White, black and onyx marble alongside granite — cut, polished and finished to order for floors, walls and countertops.",
   items: [
     {
       id: "white-carrara-marble",
       name: "White Carrara Marble",
-      tag: "Floors · Walls · Vanities",
+      tag: "Marble flooring, walls & vanities",
       texture: whiteCarraraTexture,
     },
     {
       id: "black-marble",
       name: "Black Marble",
-      tag: "Countertops · Feature Walls",
+      tag: "Kitchen countertops & feature walls",
       texture: blackMarbleTexture,
     },
     {
       id: "golden-onyx",
       name: "Golden Onyx",
-      tag: "Feature Panels · Reception",
+      tag: "Onyx feature panels & reception",
       texture: goldenOnyxTexture,
     },
     {
       id: "grey-granite",
       name: "Grey Granite",
-      tag: "Flooring · Outdoor Cladding",
+      tag: "Granite flooring & outdoor cladding",
       texture: greyGraniteTexture,
     },
   ],
@@ -233,14 +236,15 @@ export const products: ProductsContent = {
 // ----------------------------------------------------------------------------
 
 export const gallery: GalleryContent = {
-  eyebrow: "From the Factory Floor",
-  heading: "Slabs, cuts & finished work.",
+  eyebrow: "Our Work Across Mardan",
+  heading: "Marble and granite work across Mardan.",
   description: "A look at the range of stone we cut, polish and install across Mardan.",
   tiles: [
     {
       id: "gallery-1",
       gridClass: "g1",
       viewBox: "0 0 400 260",
+      alt: "White marble slab with natural veining, cut and finished in Mardan",
       texture: {
         id: "texture-gallery-1",
         baseColor: "#EDE7DB",
@@ -255,6 +259,7 @@ export const gallery: GalleryContent = {
       id: "gallery-2",
       gridClass: "g2",
       viewBox: "0 0 400 400",
+      alt: "Polished black marble slab, supplied by Wajid Marble Factory in Mardan",
       texture: {
         id: "texture-gallery-2",
         baseColor: "#0F0D0C",
@@ -269,6 +274,7 @@ export const gallery: GalleryContent = {
       id: "gallery-3",
       gridClass: "g3",
       viewBox: "0 0 300 260",
+      alt: "Golden onyx stone texture with warm veining, Mardan",
       texture: {
         id: "texture-gallery-3",
         baseColor: "#D8C7A2",
@@ -283,6 +289,7 @@ export const gallery: GalleryContent = {
       id: "gallery-4",
       gridClass: "g4",
       viewBox: "0 0 300 260",
+      alt: "Grey granite slab finish, cut for flooring in Mardan",
       texture: {
         id: "texture-gallery-4",
         baseColor: "#57544C",
@@ -297,6 +304,7 @@ export const gallery: GalleryContent = {
       id: "gallery-5",
       gridClass: "g5",
       viewBox: "0 0 300 260",
+      alt: "Light-toned marble slab close-up, polished in Mardan",
       texture: {
         id: "texture-gallery-5",
         baseColor: "#F2EEE4",
@@ -311,6 +319,7 @@ export const gallery: GalleryContent = {
       id: "gallery-6",
       gridClass: "g6",
       viewBox: "0 0 400 260",
+      alt: "Golden onyx feature stone with rich veining, Mardan",
       texture: {
         id: "texture-gallery-6",
         baseColor: "#E9D8B8",
@@ -325,6 +334,7 @@ export const gallery: GalleryContent = {
       id: "gallery-7",
       gridClass: "g7",
       viewBox: "0 0 400 260",
+      alt: "Dark polished black marble slab, finished in Mardan",
       texture: {
         id: "texture-gallery-7",
         baseColor: "#181513",
@@ -343,7 +353,7 @@ export const gallery: GalleryContent = {
 // ----------------------------------------------------------------------------
 
 export const reasons: ReasonsContent = {
-  eyebrow: "Why Wajid Marble",
+  eyebrow: "Why Choose Wajid Marble",
   heading: "Quality you can run your hand over.",
   description: "Four reasons builders and homeowners across Mardan keep coming back.",
   items: [
@@ -371,12 +381,64 @@ export const reasons: ReasonsContent = {
 };
 
 // ----------------------------------------------------------------------------
+// FAQ — eyebrow/heading kept separate from `faqs` itself so `faqs` stays
+// exactly the { question, answer }[] shape used both by the visible Faq
+// section and by FaqJsonLd's structured data (see src/types#FaqItem).
+// ----------------------------------------------------------------------------
+
+export const faqSection: SectionIntro = {
+  eyebrow: "Common Questions",
+  heading: "Marble and granite questions we get asked.",
+};
+
+export const faqs: FaqItem[] = [
+  {
+    question: "What is the current marble rate in Mardan?",
+    answer:
+      "Rates depend on the stone type, slab thickness and finish, so we don't publish a fixed price list. Call or WhatsApp us with your project details and we'll get back to you with a current quote.",
+  },
+  {
+    question: "Which marble is best for flooring in Pakistani homes?",
+    answer:
+      "White Carrara-style marble and grey granite are the most requested choices for home flooring — marble for its light, classic look, granite for its added resistance to scratching in high-traffic rooms. The right pick depends on your budget and how the room is used.",
+  },
+  {
+    question: "What is the difference between marble and granite for a kitchen countertop?",
+    answer:
+      "Granite is harder and more resistant to heat and scratching, which is why most kitchen countertops we install are granite. Marble is softer and can stain or etch from acidic foods, so it suits lower-traffic surfaces like feature walls and vanities better than a busy kitchen counter.",
+  },
+  {
+    question: "Do you deliver and install outside Mardan?",
+    answer: `Yes — we supply and install marble, granite and onyx across ${business.serviceAreas.slice(0, -1).join(", ")} and ${business.serviceAreas[business.serviceAreas.length - 1]}. Contact us with your location and we'll confirm delivery and installation timelines.`,
+  },
+  {
+    question: "How long does marble flooring installation take?",
+    answer:
+      "It depends on the size of the area, how much cutting is needed and site access — a single room is often finished in a few days, a full house takes longer. We'll give you a realistic timeline once we know the project details.",
+  },
+  {
+    question: "Do you supply marble for mosques?",
+    answer:
+      "Yes — alongside homes, offices and commercial spaces, we've supplied and installed marble, granite and onyx for mosques across the region. Get in touch with the dimensions and design requirements and we'll quote it.",
+  },
+  {
+    question: "Is onyx suitable for wall panels?",
+    answer:
+      "Yes — onyx is a popular choice for feature walls and reception panels because of its translucency and rich veining, especially when backlit. It's softer than granite, so we recommend it for walls and decorative panels rather than high-traffic floors.",
+  },
+  {
+    question: "How do I get a quote from Wajid Marble Factory?",
+    answer: `Call one of our numbers, message us on WhatsApp, or fill in the quote request form on this site with your project details. ${business.owner.name}'s team will get back to you with pricing and timelines.`,
+  },
+];
+
+// ----------------------------------------------------------------------------
 // Contact
 // ----------------------------------------------------------------------------
 
 export const contact: ContactContent = {
-  eyebrow: "Get In Touch",
-  heading: "Let's talk about your stone.",
+  eyebrow: "Marble Rates & Quotes",
+  heading: "Ask for a marble rate in Mardan.",
   lead: `Call, message on WhatsApp, or send the details of your project below — ${business.owner.name}'s team will get back to you with a quote.`,
   form: {
     title: "Request a quote",

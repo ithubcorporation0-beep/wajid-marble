@@ -12,15 +12,24 @@ import type { MarbleTexture } from "@/types";
 export default function MarbleSwatch({
   texture,
   viewBox,
+  alt,
 }: {
   texture: MarbleTexture;
   viewBox: string;
+  /** When given, the swatch is announced to screen readers as this text
+   * instead of being hidden — use this where the swatch is the only
+   * description of what's shown (e.g. a gallery tile with no caption). */
+  alt?: string;
 }) {
   const [r, g, b, a] = texture.veinColor;
   const matrixValues = `0 0 0 0 ${r} 0 0 0 0 ${g} 0 0 0 0 ${b} 0 0 0 ${a} 0`;
 
   return (
-    <svg viewBox={viewBox} preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <svg
+      viewBox={viewBox}
+      preserveAspectRatio="xMidYMid slice"
+      {...(alt ? { role: "img", "aria-label": alt } : { "aria-hidden": true })}
+    >
       <defs>
         <filter id={texture.id}>
           <feTurbulence

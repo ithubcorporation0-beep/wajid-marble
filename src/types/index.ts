@@ -140,6 +140,10 @@ export interface GalleryTile {
   gridClass: string;
   viewBox: string;
   texture: MarbleTexture;
+  /** Describes the stone shown in this tile for screen readers — the tile
+   * is otherwise a purely decorative procedural texture with no visible
+   * text of its own, unlike a product card. */
+  alt: string;
 }
 
 export interface GalleryContent extends SectionIntro {
