@@ -28,11 +28,15 @@ import { z } from "zod";
 // someone added but left blank is treated as missing, not invalid.
 const emptyStringToUndefined = (value: unknown) => (value === "" ? undefined : value);
 
-/** Used only when NEXT_PUBLIC_SITE_URL isn't set to a real value yet. Every
- * feature that reads `env.NEXT_PUBLIC_SITE_URL` still works with this — the
- * sitemap, robots.txt and SEO tags will just point at the wrong address
- * until the real one is set on whichever host is running the site. */
-const PLACEHOLDER_SITE_URL = "https://example.com";
+/** Used whenever NEXT_PUBLIC_SITE_URL isn't set on the current host. This is
+ * the site's real, permanent production address — not a placeholder — so
+ * that the sitemap, robots.txt, canonical tags and JSON-LD are always
+ * correct even if a host's dashboard never gets NEXT_PUBLIC_SITE_URL set
+ * (verified this can happen: Cloudflare Workers Builds' build step doesn't
+ * reliably pick up a dashboard-configured variable for a statically
+ * generated route like sitemap.ts). Setting NEXT_PUBLIC_SITE_URL still
+ * overrides this, e.g. for a staging deployment on a different domain. */
+const DEFAULT_SITE_URL = "https://wajidmarblefactory.com";
 
 const envSchema = z.object({
   /** The site's own public address, e.g. "https://wajidmarble.com". Used to
@@ -63,14 +67,13 @@ if (!parsedEnv.success) {
 
 if (!validated.NEXT_PUBLIC_SITE_URL) {
   console.warn(
-    `[env] NEXT_PUBLIC_SITE_URL is not set — using the placeholder "${PLACEHOLDER_SITE_URL}". ` +
-      "Set it to this site's real address in your host's environment variables so the sitemap, " +
-      "robots.txt and SEO tags point at the right place.",
+    `[env] NEXT_PUBLIC_SITE_URL is not set — defaulting to "${DEFAULT_SITE_URL}". ` +
+      "Set this environment variable if the site is ever deployed to a different domain.",
   );
 }
 
 export const env = {
-  NEXT_PUBLIC_SITE_URL: validated.NEXT_PUBLIC_SITE_URL ?? PLACEHOLDER_SITE_URL,
+  NEXT_PUBLIC_SITE_URL: validated.NEXT_PUBLIC_SITE_URL ?? DEFAULT_SITE_URL,
   RESEND_API_KEY: validated.RESEND_API_KEY,
   QUOTE_NOTIFY_EMAIL: validated.QUOTE_NOTIFY_EMAIL,
 };

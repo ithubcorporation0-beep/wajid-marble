@@ -163,13 +163,13 @@ deployment over one wrong variable.
 
 | Variable | What happens if it's missing | What it's for |
 | --- | --- | --- |
-| `NEXT_PUBLIC_SITE_URL` | Falls back to a placeholder (`https://example.com`) — the site still builds and works, but the sitemap, robots.txt and SEO tags point at the wrong address until you set this. | The site's own public address (no trailing slash), e.g. `https://wajidmarble.com`. |
+| `NEXT_PUBLIC_SITE_URL` | Falls back to the real production address (`https://wajidmarblefactory.com`) — set this only if deploying to a different domain (e.g. a staging environment). | The site's own public address (no trailing slash), e.g. `https://wajidmarblefactory.com`. |
 | `RESEND_API_KEY` | Quote requests are logged to the server console instead of emailed. | An API key from [Resend](https://resend.com), for emailing quote requests. |
 | `QUOTE_NOTIFY_EMAIL` | Same as above. | The address quote requests get emailed to. |
 
-**Set `NEXT_PUBLIC_SITE_URL` to your real deployment address as soon as you
-know it** — the site works without it, but search engines and shared links
-will see the wrong URL until it's set correctly.
+**`NEXT_PUBLIC_SITE_URL` only needs to be set if you deploy this site to a
+domain other than `wajidmarblefactory.com`** (e.g. a staging environment) —
+otherwise the built-in default is already correct.
 
 `RESEND_API_KEY` and `QUOTE_NOTIFY_EMAIL` work as a pair — set both to have
 quote requests emailed, or leave both blank to just have them logged to the
