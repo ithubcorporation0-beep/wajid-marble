@@ -15,13 +15,7 @@ export default function SiteHeader() {
             top when clicked from one of the service/contact pages. */}
         <Link href="/#top" className="brand">
           {/* eslint-disable-next-line @next/next/no-img-element -- a single small static asset, not worth next/image's runtime resizing */}
-          <img src="/brand/wm-logo.jpg" alt="" className="brand-mark" />
-          <span className="brand-text">
-            <span className="mark">
-              {business.brandPrefix} <em>{business.brandEmphasis}</em>
-            </span>
-            <span className="sub">{business.tagline}</span>
-          </span>
+          <img src="/brand/wm-logo.png" alt={`${business.name} — Quality Stone, Lasting Beauty`} className="brand-mark" />
         </Link>
 
         <nav className="links">

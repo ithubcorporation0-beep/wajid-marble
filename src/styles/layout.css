@@ -25,37 +25,13 @@ header{
 .brand{
   display:flex;
   align-items:center;
-  gap:10px;
 }
 .brand-mark{
-  height:34px;
+  /* The logo file already includes the "WAJID MARBEL FACTORY" wordmark
+     and tagline baked in (a transparent PNG, see public/brand/wm-logo.png)
+     — there's no separate text mark next to it any more. */
+  height:56px;
   width:auto;
-  border-radius:3px;
-  /* The source photo is a banner on white plastic sheeting, not a clean
-     transparent logo file — this crops that background in tightly rather
-     than showing a visible white rectangle around the mark. */
-  object-fit:cover;
-}
-.brand-text{
-  display:flex;
-  align-items:baseline;
-  gap:10px;
-}
-.brand .mark{
-  font-family:var(--font-display), serif;
-  font-weight:600;
-  font-size:1.28rem;
-  letter-spacing:0.01em;
-}
-.brand .mark em{
-  font-style:normal;
-  color:var(--gold);
-}
-.brand .sub{
-  font-size:0.66rem;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--taupe);
 }
 nav.links{display:flex;gap:34px;}
 nav.links a{
@@ -104,6 +80,8 @@ footer{
   font-size:0.8rem;
 }
 .footer-row .fmark{font-family:var(--font-display), serif;color:rgba(237,232,222,0.8);}
+.footer-brand{display:flex;align-items:center;gap:12px;}
+.footer-brand-mark{height:28px;width:auto;}
 /* flex-wrap added so the extra page links below (marble/granite/onyx/etc)
    don't overflow the row on narrower screens now that .footer-links holds
    more than the original 3 items. */

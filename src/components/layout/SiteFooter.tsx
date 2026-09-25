@@ -15,8 +15,12 @@ export default function SiteFooter() {
   return (
     <footer>
       <div className="wrap footer-row">
-        <div>
-          <span className="fmark">{business.name}</span> — {business.city}, {business.country}
+        <div className="footer-brand">
+          {/* eslint-disable-next-line @next/next/no-img-element -- a single small static asset, not worth next/image's runtime resizing */}
+          <img src="/brand/wm-logo.png" alt="" className="footer-brand-mark" />
+          <span>
+            <span className="fmark">{business.name}</span> — {business.city}, {business.country}
+          </span>
         </div>
         <div className="footer-links">
           {footerLinks.map((link) => (
