@@ -139,6 +139,10 @@ export interface Product {
   name: string;
   tag: string;
   texture: MarbleTexture;
+  /** Which service page this stone links to, e.g. "/marble-in-mardan" —
+   * lets a visitor click through from a swatch to more detail on that
+   * stone type, rather than the hexagon being purely decorative. */
+  href: string;
 }
 
 export interface ProductsContent extends SectionIntro {

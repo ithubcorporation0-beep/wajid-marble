@@ -219,24 +219,28 @@ export const products: ProductsContent = {
       name: "White Carrara Marble",
       tag: "Marble flooring, walls & vanities",
       texture: whiteCarraraTexture,
+      href: "/marble-in-mardan",
     },
     {
       id: "black-marble",
       name: "Black Marble",
       tag: "Kitchen countertops & feature walls",
       texture: blackMarbleTexture,
+      href: "/marble-in-mardan",
     },
     {
       id: "golden-onyx",
       name: "Golden Onyx",
       tag: "Onyx feature panels & reception",
       texture: goldenOnyxTexture,
+      href: "/onyx-in-mardan",
     },
     {
       id: "grey-granite",
       name: "Grey Granite",
       tag: "Granite flooring & outdoor cladding",
       texture: greyGraniteTexture,
+      href: "/granite-in-mardan",
     },
   ],
 };
