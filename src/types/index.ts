@@ -143,7 +143,13 @@ export interface Product {
   id: string;
   name: string;
   tag: string;
-  texture: MarbleTexture;
+  /** A procedural feTurbulence recipe — omit when `photoSrc` is set
+   * instead. Every product needs exactly one of `texture`/`photoSrc`. */
+  texture?: MarbleTexture;
+  /** Path to a real photo of this stone under /public (e.g.
+   * "/products/red-marble.jpg"), for products with an actual photo
+   * instead of a procedural texture. Takes priority over `texture`. */
+  photoSrc?: string;
   /** Which service page this stone links to, e.g. "/marble-in-mardan" —
    * lets a visitor click through from a swatch to more detail on that
    * stone type, rather than the hexagon being purely decorative. */

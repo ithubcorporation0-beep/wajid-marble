@@ -213,7 +213,7 @@ export const products: ProductsContent = {
   eyebrow: "Marble, Granite & Onyx",
   heading: "Marble, granite and onyx for every surface.",
   description:
-    "White, black and onyx marble alongside granite — cut, polished and finished to order for floors, walls and countertops.",
+    "White, black, grey and red marble, green granite and travertine alongside onyx — cut, polished and finished to order for floors, walls and countertops.",
   items: [
     {
       id: "white-carrara-marble",
@@ -242,6 +242,47 @@ export const products: ProductsContent = {
       tag: "Granite flooring & outdoor cladding",
       texture: greyGraniteTexture,
       href: "/granite-in-mardan",
+    },
+    // The 5 items below use real photos of Wajid Marble Factory's own
+    // stone slabs (public/products/) instead of a procedural texture —
+    // see MarbleImage.tsx. Names are a plain visual description of each
+    // stone (color + pattern), not a specific commercial/quarry trade
+    // name — TODO: confirm with Nihad Ali what each is actually sold as
+    // and swap in the real name if it differs.
+    {
+      id: "white-veined-marble",
+      name: "White Veined Marble",
+      tag: "Flooring, walls & vanities",
+      photoSrc: "/products/white-veined-marble.jpg",
+      href: "/marble-in-mardan",
+    },
+    {
+      id: "green-granite",
+      name: "Green Granite",
+      tag: "Countertops & flooring",
+      photoSrc: "/products/green-granite.jpg",
+      href: "/granite-in-mardan",
+    },
+    {
+      id: "beige-travertine",
+      name: "Beige Travertine",
+      tag: "Flooring & wall cladding",
+      photoSrc: "/products/beige-travertine.jpg",
+      href: "/marble-in-mardan",
+    },
+    {
+      id: "charcoal-grey-marble",
+      name: "Charcoal Grey Marble",
+      tag: "Feature walls & flooring",
+      photoSrc: "/products/dark-grey-marble.jpg",
+      href: "/marble-in-mardan",
+    },
+    {
+      id: "deep-red-marble",
+      name: "Deep Red Marble",
+      tag: "Feature walls & accents",
+      photoSrc: "/products/red-marble.jpg",
+      href: "/marble-in-mardan",
     },
   ],
 };

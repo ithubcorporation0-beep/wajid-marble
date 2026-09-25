@@ -27,7 +27,7 @@ export default function Products() {
             <Reveal key={product.id} className="hex-card">
               <Link href={product.href}>
                 <div className="hex-shape">
-                  <MarbleImage texture={product.texture} eager />
+                  <MarbleImage texture={product.texture} src={product.photoSrc} eager />
                 </div>
                 <div className="hex-caption">
                   <div className="pname">{product.name}</div>

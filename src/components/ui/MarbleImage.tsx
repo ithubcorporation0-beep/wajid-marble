@@ -30,14 +30,24 @@
 // optimizer needs either Node's `sharp` or a host-specific loader to work
 // on Cloudflare Workers, which is exactly the kind of host-dependent
 // config this project avoids after the NEXT_PUBLIC_SITE_URL incident.
+//
+// Also renders a real photo directly (via `src`) for products that have
+// one — see the `photoSrc` field on Product in src/types/index.ts. Same
+// <img> element and loading behavior either way; only where the source
+// file comes from differs.
 import type { MarbleTexture } from "@/types";
 
 export default function MarbleImage({
   texture,
+  src,
   alt,
   eager = false,
 }: {
-  texture: MarbleTexture;
+  /** A procedural texture recipe — omit when `src` is given instead. */
+  texture?: MarbleTexture;
+  /** A real photo path under /public, e.g. "/products/red-marble.jpg" —
+   * takes priority over `texture` when both are given. */
+  src?: string;
   /** Accessible description. Omit for a texture that's purely decorative
    * because visible text next to it already describes it (e.g. a product
    * card's name/tag) — this then renders alt="", which screen readers
@@ -48,13 +58,11 @@ export default function MarbleImage({
    * the viewport. Gallery tiles (below the fold) default to lazy. */
   eager?: boolean;
 }) {
+  const resolvedSrc = src ?? (texture ? `/textures/${texture.id}.jpg` : undefined);
+  if (!resolvedSrc) return null;
+
   return (
     // eslint-disable-next-line @next/next/no-img-element -- see file header
-    <img
-      src={`/textures/${texture.id}.jpg`}
-      alt={alt ?? ""}
-      loading={eager ? "eager" : "lazy"}
-      decoding="async"
-    />
+    <img src={resolvedSrc} alt={alt ?? ""} loading={eager ? "eager" : "lazy"} decoding="async" />
   );
 }
