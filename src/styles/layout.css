@@ -24,6 +24,20 @@ header{
 }
 .brand{
   display:flex;
+  align-items:center;
+  gap:10px;
+}
+.brand-mark{
+  height:34px;
+  width:auto;
+  border-radius:3px;
+  /* The source photo is a banner on white plastic sheeting, not a clean
+     transparent logo file — this crops that background in tightly rather
+     than showing a visible white rectangle around the mark. */
+  object-fit:cover;
+}
+.brand-text{
+  display:flex;
   align-items:baseline;
   gap:10px;
 }

@@ -14,10 +14,14 @@ export default function SiteHeader() {
         {/* "/#top" (not "#top") so this still lands on the homepage's very
             top when clicked from one of the service/contact pages. */}
         <Link href="/#top" className="brand">
-          <span className="mark">
-            {business.brandPrefix} <em>{business.brandEmphasis}</em>
+          {/* eslint-disable-next-line @next/next/no-img-element -- a single small static asset, not worth next/image's runtime resizing */}
+          <img src="/brand/wm-logo.jpg" alt="" className="brand-mark" />
+          <span className="brand-text">
+            <span className="mark">
+              {business.brandPrefix} <em>{business.brandEmphasis}</em>
+            </span>
+            <span className="sub">{business.tagline}</span>
           </span>
-          <span className="sub">{business.tagline}</span>
         </Link>
 
         <nav className="links">
