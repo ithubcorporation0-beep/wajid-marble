@@ -354,3 +354,82 @@
 }
 .form-submit:hover{background:var(--gold-soft);}
 .form-note{font-size:0.76rem;color:rgba(237,232,222,0.4);margin-top:14px;text-align:center;}
+
+/* ---------- materials catalog (/materials) ---------- */
+.materials-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  gap:24px;
+}
+.material-card{
+  display:block;
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+  background:var(--stone-deep);
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.material-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 16px 28px rgba(16,15,13,0.16);
+}
+.material-card-image{aspect-ratio:1;overflow:hidden;}
+.material-card-image img{width:100%;height:100%;object-fit:cover;}
+.material-card-category{
+  margin:16px 18px 0;
+  font-size:0.7rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--gold);
+}
+.material-card-name{
+  margin:4px 18px 18px;
+  font-family:var(--font-display), serif;
+  font-size:1.05rem;
+}
+
+/* ---------- material detail (/materials/[slug]) ---------- */
+.material-detail-grid{
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:56px;
+  align-items:start;
+}
+@media(max-width:840px){ .material-detail-grid{grid-template-columns:1fr;gap:32px;} }
+.material-gallery-main{
+  aspect-ratio:1;
+  border-radius:8px;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+.material-gallery-main img{width:100%;height:100%;object-fit:cover;}
+.material-gallery-thumbs{
+  display:flex;
+  gap:12px;
+  margin-top:14px;
+}
+.material-gallery-thumb{
+  width:64px;height:64px;
+  border-radius:6px;
+  overflow:hidden;
+  border:2px solid transparent;
+  padding:0;
+  cursor:pointer;
+  opacity:0.6;
+  transition:opacity .2s ease, border-color .2s ease;
+}
+.material-gallery-thumb img{width:100%;height:100%;object-fit:cover;}
+.material-gallery-thumb:hover{opacity:0.85;}
+.material-gallery-thumb.active{opacity:1;border-color:var(--gold);}
+.material-specs{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  padding-bottom:24px;
+  margin-bottom:24px;
+  border-bottom:1px solid var(--line);
+}
+.material-specs > div{display:flex;justify-content:space-between;gap:16px;}
+.material-specs dt{color:var(--taupe);font-size:0.85rem;}
+.material-specs dd{font-weight:500;}
+.material-description{color:var(--taupe);line-height:1.75;}

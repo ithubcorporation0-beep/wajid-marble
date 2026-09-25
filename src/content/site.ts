@@ -220,71 +220,120 @@ export const products: ProductsContent = {
       name: "White Carrara Marble",
       tag: "Marble flooring, walls & vanities",
       texture: whiteCarraraTexture,
-      href: "/marble-in-mardan",
+      href: "/materials/white-carrara-marble",
+      category: "Marble",
+      color: "White",
+      description:
+        "A bright white marble with soft grey veining, cut and polished for flooring, wall cladding and bathroom vanities. Works well in both bright, modern interiors and more traditional rooms.",
     },
     {
       id: "black-marble",
       name: "Black Marble",
       tag: "Kitchen countertops & feature walls",
       texture: blackMarbleTexture,
-      href: "/marble-in-mardan",
+      href: "/materials/black-marble",
+      category: "Marble",
+      color: "Black",
+      description:
+        "A deep black marble with fine gold-toned veining, finished to a high polish. Popular for kitchen countertops and feature walls where a striking contrast is wanted.",
     },
     {
       id: "golden-onyx",
       name: "Golden Onyx",
       tag: "Onyx feature panels & reception",
       texture: goldenOnyxTexture,
-      href: "/onyx-in-mardan",
+      href: "/materials/golden-onyx",
+      category: "Onyx",
+      color: "Golden",
+      description:
+        "A warm, golden-toned onyx with rich, layered veining. Onyx is naturally translucent, so panels of this stone are often backlit for feature walls and reception counters.",
     },
     {
       id: "grey-granite",
       name: "Grey Granite",
       tag: "Granite flooring & outdoor cladding",
       texture: greyGraniteTexture,
-      href: "/granite-in-mardan",
+      href: "/materials/grey-granite",
+      category: "Granite",
+      color: "Grey",
+      description:
+        "A hard-wearing grey granite, cut and finished for flooring and outdoor cladding where durability and low maintenance matter more than a light color.",
     },
     // The 5 items below use real photos of Wajid Marble Factory's own
     // stone slabs (public/products/) instead of a procedural texture —
-    // see MarbleImage.tsx. Names are a plain visual description of each
-    // stone (color + pattern), not a specific commercial/quarry trade
+    // see MarbleImage.tsx. Names, category and color are a plain visual
+    // description of each stone, not a specific commercial/quarry trade
     // name — TODO: confirm with Nihad Ali what each is actually sold as
-    // and swap in the real name if it differs.
+    // and swap in the real name/category if it differs.
     {
       id: "white-veined-marble",
       name: "White Veined Marble",
       tag: "Flooring, walls & vanities",
       photoSrc: "/products/white-veined-marble.jpg",
-      href: "/marble-in-mardan",
+      href: "/materials/white-veined-marble",
+      category: "Marble",
+      color: "White",
+      description:
+        "A white marble with a fine, sugary crystalline texture and soft grey linear veining, polished for flooring, wall cladding and vanities.",
     },
     {
       id: "green-granite",
       name: "Green Granite",
       tag: "Countertops & flooring",
       photoSrc: "/products/green-granite.jpg",
-      href: "/granite-in-mardan",
+      href: "/materials/green-granite",
+      category: "Granite",
+      color: "Green",
+      description:
+        "A green-grey granite flecked with black mineral spots and pale yellow-green patches, polished for countertops and flooring.",
     },
     {
       id: "beige-travertine",
       name: "Beige Travertine",
       tag: "Flooring & wall cladding",
       photoSrc: "/products/beige-travertine.jpg",
-      href: "/marble-in-mardan",
+      href: "/materials/beige-travertine",
+      category: "Marble",
+      color: "Beige",
+      description:
+        "A classic beige travertine, with the natural linear banding and small surface pores characteristic of travertine, finished for flooring and wall cladding.",
     },
     {
       id: "charcoal-grey-marble",
       name: "Charcoal Grey Marble",
       tag: "Feature walls & flooring",
       photoSrc: "/products/dark-grey-marble.jpg",
-      href: "/marble-in-mardan",
+      href: "/materials/charcoal-grey-marble",
+      category: "Marble",
+      color: "Charcoal Grey",
+      description:
+        "A dark charcoal-grey marble with bold, cloud-like white veining, polished to a high gloss for feature walls and flooring.",
     },
     {
       id: "deep-red-marble",
       name: "Deep Red Marble",
       tag: "Feature walls & accents",
       photoSrc: "/products/red-marble.jpg",
-      href: "/marble-in-mardan",
+      href: "/materials/deep-red-marble",
+      category: "Marble",
+      color: "Red",
+      description:
+        "A deep maroon-red marble with dark veining and occasional white mineral patches, polished for feature walls and decorative accents.",
     },
   ],
+};
+
+// ----------------------------------------------------------------------------
+// Materials catalog — the /materials and /materials/[slug] pages built
+// from products.items above (see src/app/materials/). This is just the
+// intro copy for the listing page; each material's own name/category/
+// color/description already lives on its Product entry.
+// ----------------------------------------------------------------------------
+
+export const materialsPageIntro = {
+  eyebrow: "Our Materials",
+  heading: "Browse our stone materials.",
+  lead: "Every marble, granite and onyx we cut, polish and install — organized by stone type. Open one for a closer look, or call for a current quote.",
 };
 
 // ----------------------------------------------------------------------------

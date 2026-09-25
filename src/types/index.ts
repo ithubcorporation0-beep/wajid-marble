@@ -150,10 +150,27 @@ export interface Product {
    * "/products/red-marble.jpg"), for products with an actual photo
    * instead of a procedural texture. Takes priority over `texture`. */
   photoSrc?: string;
-  /** Which service page this stone links to, e.g. "/marble-in-mardan" —
-   * lets a visitor click through from a swatch to more detail on that
-   * stone type, rather than the hexagon being purely decorative. */
+  /** Which page this stone links to — its own materials detail page,
+   * e.g. "/materials/deep-red-marble" (see src/app/materials/[slug]). */
   href: string;
+  /** Broad stone type, used to group/filter the /materials catalog. */
+  category: "Marble" | "Granite" | "Onyx";
+  /** Plain color description (e.g. "Red", "Charcoal Grey") — not a
+   * specific commercial/quarry name, just what it visibly looks like. */
+  color: string;
+  /** A longer paragraph for the /materials/[slug] detail page — `tag` is
+   * the short caption shown under the homepage hexagon. */
+  description: string;
+}
+
+/** One image in a material's detail-page gallery. Every product has
+ * exactly 3 (see scripts/generate-textures.mjs and public/materials/) —
+ * a full view plus 2 detail crops of the same real photo or texture
+ * render, not 3 separate photos (there's only one source image per
+ * stone). Path convention: /materials/<product.id>/<1|2|3>.jpg. */
+export interface MaterialGalleryImage {
+  src: string;
+  alt: string;
 }
 
 export interface ProductsContent extends SectionIntro {
