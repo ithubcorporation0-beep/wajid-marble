@@ -48,10 +48,18 @@ function buildLocalBusinessJsonLd() {
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: `${business.name} Stone Range`,
+      // itemOffered is typed as Service, not Product. Google's structured
+      // data guidelines require a Product to carry a price (via `offers`)
+      // or a rating/review to be eligible for rich results — Search
+      // Console flagged all 4 of these as invalid for exactly that reason,
+      // and there's no honest price to give: rates depend on thickness,
+      // finish and quantity, quoted per project (see the FAQ). Service has
+      // no such requirement, and is the more accurate type anyway — this
+      // is what's supplied and installed, not a fixed-price product line.
       itemListElement: products.items.map((product) => ({
         "@type": "Offer",
         itemOffered: {
-          "@type": "Product",
+          "@type": "Service",
           name: product.name,
           description: product.tag,
         },
