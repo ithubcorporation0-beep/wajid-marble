@@ -1,7 +1,9 @@
-// The "What We Offer" section: a grid of stone product cards. Each card's
-// texture is a pre-rendered static image (MarbleImage) built from a recipe
-// in src/content/site.ts, instead of 4 copies of the same inline SVG markup
-// (see MarbleImage.tsx for why it's an image rather than a live filter).
+// The "What We Offer" section: a hexagon showcase of stone swatches, each
+// built from the same MarbleImage/texture recipe in src/content/site.ts as
+// before — just cropped to a hexagon silhouette with its name/tag as a
+// caption underneath, instead of a rectangular card with the text
+// overlaid on top (see MarbleImage.tsx for why it's an image rather than a
+// live filter).
 import { products } from "@/content/site";
 import Reveal from "@/components/ui/Reveal";
 import MarbleImage from "@/components/ui/MarbleImage";
@@ -18,11 +20,13 @@ export default function Products() {
           <p>{products.description}</p>
         </Reveal>
 
-        <div className="products-grid">
+        <div className="hex-grid">
           {products.items.map((product) => (
-            <Reveal key={product.id} className="product-card">
-              <MarbleImage texture={product.texture} eager />
-              <div className="product-info">
+            <Reveal key={product.id} className="hex-card">
+              <div className="hex-shape">
+                <MarbleImage texture={product.texture} eager />
+              </div>
+              <div className="hex-caption">
                 <div className="pname">{product.name}</div>
                 <div className="ptag">{product.tag}</div>
               </div>

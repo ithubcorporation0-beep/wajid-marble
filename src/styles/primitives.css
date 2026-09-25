@@ -29,10 +29,10 @@
   display:inline-flex;
   align-items:center;
   gap:8px;
-  padding:11px 22px;
+  padding:12px 24px;
   font-size:0.82rem;
   letter-spacing:0.03em;
-  border-radius:2px;
+  border-radius:6px;
   border:1px solid var(--charcoal);
   transition:all .25s ease;
   white-space:nowrap;
@@ -41,8 +41,13 @@
   background:var(--charcoal);
   color:var(--stone);
 }
-.btn-solid:hover{background:var(--gold);border-color:var(--gold);}
-.btn-ghost:hover{background:var(--charcoal);color:var(--stone);}
+.btn-solid:hover{
+  background:var(--gold);
+  border-color:var(--gold);
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(16,15,13,0.22);
+}
+.btn-ghost:hover{background:var(--charcoal);color:var(--stone);transform:translateY(-2px);}
 
 /* ---------- eyebrow label ---------- */
 .eyebrow{

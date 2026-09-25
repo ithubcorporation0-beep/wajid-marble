@@ -144,32 +144,39 @@
   letter-spacing:0.02em;
 }
 
-/* ---------- products ---------- */
-.products-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
+/* ---------- products (hexagon showcase) ----------
+   Each stone swatch is clipped to a hexagon rather than shown as a plain
+   rectangle — the swatch itself is still the same MarbleImage/texture as
+   before, just cropped to a different silhouette, so no content changed.
+   drop-shadow (not box-shadow) is used deliberately: box-shadow is a
+   property of the element's own box and gets clipped away along with the
+   corners by clip-path, while filter:drop-shadow follows the shape's
+   actual alpha silhouette. */
+.hex-grid{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:56px 44px;
 }
-@media(max-width:980px){ .products-grid{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:560px){ .products-grid{grid-template-columns:1fr;} }
-.product-card{
-  position:relative;
-  aspect-ratio:3/4;
-  border-radius:2px;
-  overflow:hidden;
-  border:1px solid var(--line);
-  cursor:default;
+.hex-card{
+  width:220px;
+  text-align:center;
 }
-.product-card svg,.product-card img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;}
-.product-info{
-  position:absolute;
-  left:0;right:0;bottom:0;
-  padding:22px 20px;
-  background:linear-gradient(0deg, rgba(16,15,13,0.78) 0%, rgba(16,15,13,0) 100%);
-  color:#F6F3EC;
+.hex-shape{
+  width:100%;
+  aspect-ratio:1.1547;
+  clip-path:polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  filter:drop-shadow(0 16px 30px rgba(16,15,13,0.32));
+  transition:transform .3s ease, filter .3s ease;
 }
-.product-info .pname{font-family:var(--font-display), serif;font-size:1.15rem;margin-bottom:4px;}
-.product-info .ptag{font-size:0.75rem;color:rgba(246,243,236,0.72);}
+.hex-card:hover .hex-shape{
+  transform:translateY(-6px);
+  filter:drop-shadow(0 22px 38px rgba(16,15,13,0.4));
+}
+.hex-shape img{width:100%;height:100%;object-fit:cover;}
+.hex-caption{margin-top:24px;}
+.hex-caption .pname{font-family:var(--font-display), serif;font-size:1.1rem;margin-bottom:4px;}
+.hex-caption .ptag{font-size:0.78rem;color:var(--taupe);}
 
 /* ---------- why choose ---------- */
 .why{background:var(--stone-deep);}
@@ -225,8 +232,13 @@
 .gallery-grid > div{
   position:relative;
   overflow:hidden;
-  border-radius:2px;
+  border-radius:8px;
   border:1px solid var(--line);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.gallery-grid > div:hover{
+  transform:translateY(-4px);
+  box-shadow:0 18px 32px rgba(16,15,13,0.24);
 }
 .gallery-grid svg,.gallery-grid img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;}
 
