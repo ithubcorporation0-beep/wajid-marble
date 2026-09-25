@@ -80,6 +80,11 @@ export interface Business {
   /** Which number WhatsApp chats go to (same value as one of the phones
    * above — never a separately-typed-out number). */
   whatsappNumber: string;
+  /** Public contact address, shown in the Contact section and used to
+   * build its mailto: link. Separate from QUOTE_NOTIFY_EMAIL (see
+   * src/lib/env.ts) — that's the private address quote form submissions
+   * are emailed to, which may or may not be the same address. */
+  email: string;
   /** Cities/towns the business serves, `city` first. Used for the
    * LocalBusiness JSON-LD `areaServed` field (see
    * src/components/seo/LocalBusinessJsonLd.tsx) — not shown anywhere on
@@ -176,7 +181,7 @@ export interface ReasonsContent extends SectionIntro {
   items: Reason[];
 }
 
-export type ContactMethodIcon = "phone" | "whatsapp" | "pin";
+export type ContactMethodIcon = "phone" | "whatsapp" | "pin" | "email";
 
 export interface ContactMethod {
   id: string;

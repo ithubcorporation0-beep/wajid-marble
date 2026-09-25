@@ -70,6 +70,7 @@ export const business: Business = {
   },
   phones,
   whatsappNumber: phones.secondary,
+  email: "nihadali6146176@gmail.com",
   serviceAreas: ["Mardan", "Nowshera", "Charsadda", "Swabi", "Peshawar"],
   seoDescription:
     "Marble, granite and golden onyx supplied and installed across Mardan, Khyber Pakhtunkhwa — factory-direct installation, every slab hand-checked.",
@@ -500,6 +501,14 @@ export const contactMethods: ContactMethod[] = [
     value: "Chat directly",
     href: `https://wa.me/${business.whatsappNumber}`,
     action: "Open",
+  },
+  {
+    id: "email",
+    icon: "email",
+    label: "Email",
+    value: business.email,
+    href: `mailto:${business.email}`,
+    action: "Email",
   },
   {
     id: "location",

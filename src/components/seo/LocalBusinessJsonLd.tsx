@@ -24,6 +24,7 @@ function buildLocalBusinessJsonLd() {
     description: business.seoDescription,
     url: env.NEXT_PUBLIC_SITE_URL,
     telephone: [`+${business.phones.primary}`, `+${business.phones.secondary}`],
+    email: business.email,
     address: {
       "@type": "PostalAddress",
       // Omitted while business.streetAddress is still the empty-string
