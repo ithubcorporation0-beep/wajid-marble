@@ -215,11 +215,17 @@ export const products: ProductsContent = {
   description:
     "Explore our curated collection of premium marble, granite and natural stone, selected for timeless architectural and interior applications.",
   items: [
+    // These 4 items keep their procedural `texture` recipe (still used by
+    // scripts/generate-textures.mjs and as a fallback if photoSrc is ever
+    // removed) but now also carry a `photoSrc` — MarbleImage.tsx prefers
+    // photoSrc, so the homepage card and /materials gallery render the
+    // real stone photo, not the generated texture.
     {
       id: "white-carrara-marble",
       name: "White Carrara Marble",
       tag: "Marble flooring, walls & vanities",
       texture: whiteCarraraTexture,
+      photoSrc: "/products/white-carrara-marble.jpg",
       href: "/materials/white-carrara-marble",
       featured: true,
       category: "Marble",
@@ -232,18 +238,20 @@ export const products: ProductsContent = {
       name: "Black Marble",
       tag: "Kitchen countertops & feature walls",
       texture: blackMarbleTexture,
+      photoSrc: "/products/black-marble.jpg",
       href: "/materials/black-marble",
       featured: true,
       category: "Marble",
       color: "Black",
       description:
-        "A deep black marble with fine gold-toned veining, finished to a high polish. Popular for kitchen countertops and feature walls where a striking contrast is wanted.",
+        "A deep black marble with bold white veining, finished to a high polish. Popular for kitchen countertops and feature walls where a striking contrast is wanted.",
     },
     {
       id: "golden-onyx",
       name: "Golden Onyx",
       tag: "Onyx feature panels & reception",
       texture: goldenOnyxTexture,
+      photoSrc: "/products/golden-onyx.jpg",
       href: "/materials/golden-onyx",
       featured: true,
       category: "Onyx",
@@ -256,6 +264,7 @@ export const products: ProductsContent = {
       name: "Grey Granite",
       tag: "Granite flooring & outdoor cladding",
       texture: greyGraniteTexture,
+      photoSrc: "/products/grey-granite.jpg",
       href: "/materials/grey-granite",
       featured: true,
       category: "Granite",
@@ -263,9 +272,8 @@ export const products: ProductsContent = {
       description:
         "A hard-wearing grey granite, cut and finished for flooring and outdoor cladding where durability and low maintenance matter more than a light color.",
     },
-    // The 5 items below use real photos of Wajid Marble Factory's own
-    // stone slabs (public/products/) instead of a procedural texture —
-    // see MarbleImage.tsx. Names, category and color are a plain visual
+    // The 5 items below have no procedural texture recipe at all — a photo
+    // is their only image. Names, category and color are a plain visual
     // description of each stone, not a specific commercial/quarry trade
     // name — TODO: confirm with Nihad Ali what each is actually sold as
     // and swap in the real name/category if it differs.
@@ -315,7 +323,7 @@ export const products: ProductsContent = {
       category: "Marble",
       color: "Charcoal Grey",
       description:
-        "A dark charcoal-grey marble with bold, cloud-like white veining, polished to a high gloss for feature walls and flooring.",
+        "A dark charcoal-grey marble with bold white veining threaded with warm gold-toned streaks, polished to a high gloss for feature walls and flooring.",
     },
     {
       id: "deep-red-marble",
