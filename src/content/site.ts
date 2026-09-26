@@ -210,10 +210,10 @@ const greyGraniteTexture: MarbleTexture = {
 };
 
 export const products: ProductsContent = {
-  eyebrow: "Marble, Granite & Onyx",
-  heading: "Marble, granite and onyx for every surface.",
+  eyebrow: "Our Materials",
+  heading: "Natural Stone Collection",
   description:
-    "White, black, grey and red marble, green granite and travertine alongside onyx — cut, polished and finished to order for floors, walls and countertops.",
+    "Explore our curated collection of premium marble, granite and natural stone, selected for timeless architectural and interior applications.",
   items: [
     {
       id: "white-carrara-marble",
@@ -221,6 +221,7 @@ export const products: ProductsContent = {
       tag: "Marble flooring, walls & vanities",
       texture: whiteCarraraTexture,
       href: "/materials/white-carrara-marble",
+      featured: true,
       category: "Marble",
       color: "White",
       description:
@@ -232,6 +233,7 @@ export const products: ProductsContent = {
       tag: "Kitchen countertops & feature walls",
       texture: blackMarbleTexture,
       href: "/materials/black-marble",
+      featured: true,
       category: "Marble",
       color: "Black",
       description:
@@ -243,6 +245,7 @@ export const products: ProductsContent = {
       tag: "Onyx feature panels & reception",
       texture: goldenOnyxTexture,
       href: "/materials/golden-onyx",
+      featured: true,
       category: "Onyx",
       color: "Golden",
       description:
@@ -254,6 +257,7 @@ export const products: ProductsContent = {
       tag: "Granite flooring & outdoor cladding",
       texture: greyGraniteTexture,
       href: "/materials/grey-granite",
+      featured: true,
       category: "Granite",
       color: "Grey",
       description:
@@ -271,6 +275,7 @@ export const products: ProductsContent = {
       tag: "Flooring, walls & vanities",
       photoSrc: "/products/white-veined-marble.jpg",
       href: "/materials/white-veined-marble",
+      featured: true,
       category: "Marble",
       color: "White",
       description:
@@ -282,6 +287,7 @@ export const products: ProductsContent = {
       tag: "Countertops & flooring",
       photoSrc: "/products/green-granite.jpg",
       href: "/materials/green-granite",
+      featured: true,
       category: "Granite",
       color: "Green",
       description:
@@ -293,6 +299,7 @@ export const products: ProductsContent = {
       tag: "Flooring & wall cladding",
       photoSrc: "/products/beige-travertine.jpg",
       href: "/materials/beige-travertine",
+      featured: true,
       category: "Marble",
       color: "Beige",
       description:
@@ -304,6 +311,7 @@ export const products: ProductsContent = {
       tag: "Feature walls & flooring",
       photoSrc: "/products/dark-grey-marble.jpg",
       href: "/materials/charcoal-grey-marble",
+      featured: true,
       category: "Marble",
       color: "Charcoal Grey",
       description:
@@ -315,6 +323,9 @@ export const products: ProductsContent = {
       tag: "Feature walls & accents",
       photoSrc: "/products/red-marble.jpg",
       href: "/materials/deep-red-marble",
+      // Not in the homepage's 8-item showcase grid (kept to a clean 4x2
+      // layout) — still fully live on /materials and its own detail page.
+      featured: false,
       category: "Marble",
       color: "Red",
       description:

@@ -152,38 +152,61 @@
    property of the element's own box and gets clipped away along with the
    corners by clip-path, while filter:drop-shadow follows the shape's
    actual alpha silhouette. */
+/* Explicit column counts (not auto-fit/flex-wrap) so the grid always
+   matches the requested 4 / 2 / 1 layout exactly, rather than however
+   many 220px cards happen to fit a given container width. */
 .hex-grid{
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:56px 44px;
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:64px 32px;
 }
-.hex-card{
-  width:220px;
-  text-align:center;
-}
-.hex-card a{display:block;}
+@media(max-width:1024px){ .hex-grid{grid-template-columns:repeat(2, 1fr);} }
+@media(max-width:560px){ .hex-grid{grid-template-columns:1fr;} }
+
+.hex-card{display:block;text-align:center;}
 .hex-shape{
+  /* max-width (not a bare width) keeps every hexagon the same size at
+     desktop/tablet, while still shrinking gracefully if a grid cell is
+     ever narrower than 220px (e.g. very small phones). */
   width:100%;
+  max-width:220px;
+  margin:0 auto;
   aspect-ratio:1.1547;
   clip-path:polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  filter:drop-shadow(0 16px 30px rgba(16,15,13,0.32));
+  filter:drop-shadow(0 14px 26px rgba(16,15,13,0.28));
   transition:transform .3s ease, filter .3s ease;
 }
 .hex-card:hover .hex-shape{
-  transform:translateY(-6px);
-  filter:drop-shadow(0 22px 38px rgba(16,15,13,0.4));
+  transform:scale(1.03);
+  filter:drop-shadow(0 18px 30px rgba(16,15,13,0.34));
 }
 .hex-shape img{width:100%;height:100%;object-fit:cover;}
-.hex-caption{margin-top:24px;}
-.hex-caption .pname{
-  font-family:var(--font-display), serif;
-  font-size:1.1rem;
-  margin-bottom:4px;
-  transition:color .2s ease;
+
+/* The name sits on a small pill-shaped plate overlapping the hexagon's
+   bottom point, like a stone sample's swatch label — the plate's own
+   fixed dark/gold styling (not per-stone colors) keeps 8 different photos
+   and textures reading as one consistent, restrained catalog. */
+.hex-caption{margin-top:-18px;position:relative;z-index:1;}
+.hex-name-plate{
+  display:inline-block;
+  max-width:100%;
+  background:var(--charcoal);
+  border:1px solid var(--gold-soft);
+  border-radius:999px;
+  padding:10px 22px;
+  box-shadow:0 10px 20px rgba(16,15,13,0.22);
 }
-.hex-card:hover .hex-caption .pname{color:var(--gold);}
-.hex-caption .ptag{font-size:0.78rem;color:var(--taupe);}
+.hex-name-plate .pname{
+  font-family:var(--font-display), serif;
+  font-size:0.98rem;
+  color:var(--stone);
+}
+.hex-caption .ptag{
+  margin-top:14px;
+  font-size:0.8rem;
+  color:var(--taupe);
+  line-height:1.5;
+}
 
 /* ---------- why choose ---------- */
 .why{background:var(--stone-deep);}

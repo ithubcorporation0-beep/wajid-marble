@@ -106,6 +106,25 @@
   line-height:1.6;
 }
 
+/* ---------- centered section header (Products/"Natural Stone Collection") ---------- */
+.section-head-center{
+  text-align:center;
+  max-width:620px;
+  margin:0 auto 56px;
+}
+.section-head-center .eyebrow{justify-content:center;color:var(--gold);}
+.section-head-center .eyebrow::before{background:var(--gold);}
+.section-head-center h2{
+  font-size:clamp(2rem, 3.4vw, 2.9rem);
+  margin-top:10px;
+  margin-bottom:16px;
+}
+.section-head-center p{
+  color:var(--taupe);
+  font-size:0.95rem;
+  line-height:1.65;
+}
+
 /* ---------- spam-trap field (kept off-screen, never shown to people) ---------- */
 .honeypot{
   position:absolute;

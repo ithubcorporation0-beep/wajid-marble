@@ -161,6 +161,12 @@ export interface Product {
   /** A longer paragraph for the /materials/[slug] detail page — `tag` is
    * the short caption shown under the homepage hexagon. */
   description: string;
+  /** Whether this stone appears in the homepage's "Natural Stone
+   * Collection" showcase (see Products.tsx). Every product still gets its
+   * own /materials/[slug] page and shows in the full /materials catalog
+   * regardless of this flag — it only controls the smaller homepage
+   * highlight, which is deliberately capped at 8 for a clean 4x2 grid. */
+  featured: boolean;
 }
 
 /** One image in a material's detail-page gallery. Every product has
