@@ -55,13 +55,28 @@ nav.links a:hover::after{width:100%;}
   align-items:center;
   gap:14px;
 }
-.menu-toggle{display:none;background:none;border:0;cursor:pointer;padding:6px;}
+/* min-width/min-height:44px is the standard minimum comfortable touch
+   target size (WCAG 2.5.5) — the visible icon is much smaller than that,
+   so the button centers it inside a full 44x44 tappable area instead of
+   only being tappable on the icon's own ~34x37px footprint. */
+.menu-toggle{
+  display:none;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  background:none;
+  border:0;
+  cursor:pointer;
+  padding:6px;
+  min-width:44px;
+  min-height:44px;
+}
 .menu-toggle span{display:block;width:22px;height:1.5px;background:var(--charcoal);margin:5px 0;}
 
 @media(max-width:900px){
   nav.links{display:none;}
   .nav-cta .btn-ghost{display:none;}
-  .menu-toggle{display:block;}
+  .menu-toggle{display:flex;}
 }
 
 /* ---------- footer ---------- */

@@ -62,7 +62,7 @@ export default function Contact({
                 <div className="contact-method" key={method.id}>
                   <div className="cm-left">
                     <div className="cm-icon">{ICONS[method.icon]}</div>
-                    <div>
+                    <div className="cm-text">
                       <div className="cm-label">{method.label}</div>
                       <div className="cm-value">{method.value}</div>
                     </div>

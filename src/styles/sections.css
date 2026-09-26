@@ -282,11 +282,25 @@
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:16px;
   padding:22px 0;
   border-top:1px solid rgba(237,232,222,0.14);
 }
 .contact-method:last-child{border-bottom:1px solid rgba(237,232,222,0.14);}
-.cm-left{display:flex;align-items:center;gap:16px;}
+/* min-width:0 overrides flexbox's default min-width:auto, which otherwise
+   refuses to shrink a flex child below its content's natural width — with
+   a long, unbreakable value like an email address, that was forcing the
+   whole row (and the tappable action button in it) wider than the
+   viewport on narrow phones. Was invisible in normal testing because
+   body has overflow-x:hidden (see base.css), which hides the resulting
+   horizontal overflow instead of fixing it — the row was really
+   overflowing by 60-80px, not just looking a little tight. */
+.cm-left{display:flex;align-items:center;gap:16px;min-width:0;}
+/* The flex item wrapping label+value also needs min-width:0 — it's a
+   flex child of .cm-left too, so the fix above alone isn't enough; without
+   this, flexbox still refuses to shrink *this* box below its content's
+   natural width, which is the same overflow bug one level deeper. */
+.cm-text{min-width:0;}
 .cm-icon{
   width:38px;height:38px;
   border:1px solid rgba(237,232,222,0.3);
@@ -295,14 +309,26 @@
   flex-shrink:0;
 }
 .cm-label{font-size:0.72rem;color:rgba(237,232,222,0.5);letter-spacing:0.08em;text-transform:uppercase;}
-.cm-value{font-family:var(--font-display), serif;font-size:1.2rem;margin-top:2px;}
+.cm-value{
+  font-family:var(--font-display), serif;
+  font-size:1.2rem;
+  margin-top:2px;
+  overflow-wrap:break-word;
+}
 .cm-action{
+  display:inline-flex;
+  align-items:center;
+  /* padding tuned so the button is at least 44px tall — the standard
+     minimum comfortable touch target size — not just visually similar
+     to the original 35px-tall version. */
+  min-height:44px;
   font-size:0.8rem;
   color:var(--gold-soft);
   border:1px solid rgba(201,168,112,0.4);
   padding:9px 18px;
   border-radius:2px;
   transition:all .2s ease;
+  flex-shrink:0;
 }
 .cm-action:hover{background:var(--gold-soft);color:var(--onyx);}
 

@@ -28,7 +28,11 @@
 .btn{
   display:inline-flex;
   align-items:center;
+  justify-content:center;
   gap:8px;
+  /* min-height (not just padding) guarantees the standard 44px minimum
+     comfortable touch target regardless of the label's line height. */
+  min-height:44px;
   padding:12px 24px;
   font-size:0.82rem;
   letter-spacing:0.03em;
@@ -67,7 +71,15 @@
 }
 
 /* ---------- reveal on scroll ---------- */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+/* min-width:0 matters wherever Reveal (src/components/ui/Reveal.tsx) wraps
+   content sitting in a CSS grid or flex track (e.g. .contact-grid) — a
+   grid/flex item's default min-width is `auto`, which means "at least as
+   wide as your content's own minimum width", not 0. With long unbreakable
+   text somewhere inside (an email address, a phone number), that default
+   silently forces the whole track wider than its container, overflowing
+   the viewport on narrow screens even though every element in between
+   individually looks like it should be free to shrink. */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;min-width:0;}
 .reveal.in{opacity:1;transform:translateY(0);}
 
 /* ---------- section padding + section-head layout ---------- */
