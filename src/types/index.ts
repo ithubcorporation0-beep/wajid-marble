@@ -169,11 +169,9 @@ export interface Product {
   featured: boolean;
 }
 
-/** One image in a material's detail-page gallery. Each product can have
- * up to 5 (see src/lib/materials.ts, which detects at build time how many
- * of /materials/<product.id>/1.jpg through 5.jpg actually exist — drop in
- * a new numbered file and it appears in the gallery on the next build, no
- * code change needed). Path convention: /materials/<product.id>/<n>.jpg. */
+/** One image in a material's detail-page gallery. Every product has the
+ * same fixed count (see GALLERY_IMAGE_COUNT in src/lib/materials.ts).
+ * Path convention: /materials/<product.id>/<n>.jpg. */
 export interface MaterialGalleryImage {
   src: string;
   alt: string;
