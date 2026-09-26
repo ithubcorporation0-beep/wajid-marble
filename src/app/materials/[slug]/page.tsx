@@ -65,7 +65,7 @@ export default async function MaterialDetailPage({ params }: { params: Promise<{
 
       <section className="section">
         <div className="wrap material-detail-grid">
-          <MaterialGallery images={getMaterialGalleryImages(product)} />
+          <MaterialGallery images={getMaterialGalleryImages(product)} materialName={product.name} />
           <div>
             <dl className="material-specs">
               <div>

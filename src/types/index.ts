@@ -169,11 +169,11 @@ export interface Product {
   featured: boolean;
 }
 
-/** One image in a material's detail-page gallery. Every product has
- * exactly 3 (see scripts/generate-textures.mjs and public/materials/) —
- * a full view plus 2 detail crops of the same real photo or texture
- * render, not 3 separate photos (there's only one source image per
- * stone). Path convention: /materials/<product.id>/<1|2|3>.jpg. */
+/** One image in a material's detail-page gallery. Each product can have
+ * up to 5 (see src/lib/materials.ts, which detects at build time how many
+ * of /materials/<product.id>/1.jpg through 5.jpg actually exist — drop in
+ * a new numbered file and it appears in the gallery on the next build, no
+ * code change needed). Path convention: /materials/<product.id>/<n>.jpg. */
 export interface MaterialGalleryImage {
   src: string;
   alt: string;

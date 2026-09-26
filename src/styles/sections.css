@@ -445,19 +445,59 @@
   align-items:start;
 }
 @media(max-width:840px){ .material-detail-grid{grid-template-columns:1fr;gap:32px;} }
+
+/* Grid items default to min-width:auto ("at least as wide as my content's
+   own minimum width"), not 0 — the same trap documented on .reveal in
+   primitives.css. .material-gallery-thumbs holds non-shrinking (64px,
+   flex-shrink:0) thumbnails whose combined width can exceed the mobile
+   viewport; without this, that width bubbles up through .material-gallery
+   as a grid item and forces the whole page wider instead of letting the
+   thumbs row scroll on its own. */
+.material-gallery{min-width:0;}
 .material-gallery-main{
+  position:relative;
   aspect-ratio:1;
   border-radius:8px;
   overflow:hidden;
   border:1px solid var(--line);
 }
-.material-gallery-main img{width:100%;height:100%;object-fit:cover;}
+.material-gallery-main img{width:100%;height:100%;object-fit:cover;animation:material-gallery-fade .35s ease;}
+@keyframes material-gallery-fade{from{opacity:0;}to{opacity:1;}}
+
+/* Prev/next arrows overlaid on the main image. 44px is the standard
+   comfortable touch target size used site-wide (see .btn in
+   primitives.css) — the visible circle is smaller, centered inside it. */
+.material-gallery-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  border:1px solid rgba(237,232,222,0.5);
+  background:rgba(16,15,13,0.45);
+  color:var(--stone);
+  cursor:pointer;
+  transition:background .2s ease, border-color .2s ease;
+}
+.material-gallery-arrow:hover{background:rgba(16,15,13,0.7);border-color:var(--gold);}
+.material-gallery-arrow-prev{left:12px;}
+.material-gallery-arrow-next{right:12px;}
+
 .material-gallery-thumbs{
   display:flex;
   gap:12px;
   margin-top:14px;
+  /* 5 thumbnails at 64px + gaps can be tighter than some phones' screen
+     width once the surrounding page padding is subtracted — scroll rather
+     than wrap or squeeze, and never let it push the page itself wider. */
+  overflow-x:auto;
+  padding-bottom:4px;
 }
 .material-gallery-thumb{
+  flex-shrink:0;
   width:64px;height:64px;
   border-radius:6px;
   overflow:hidden;
