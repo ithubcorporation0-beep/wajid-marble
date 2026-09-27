@@ -11,6 +11,16 @@
 import { useState } from "react";
 import type { MaterialApplication } from "@/types";
 
+// Every application.image (e.g. ".../kitchen.jpg") has a matching, much
+// smaller "-thumb" file generated alongside it (see scripts/ — same crop,
+// downscaled to 240px). The thumbnail row displays these at ~76px, so
+// loading the same full-resolution file five times over for that would
+// be pure waste — this derives the thumb path by convention instead of
+// carrying a second path in the content data for every application.
+function thumbSrc(image: string): string {
+  return image.replace(/(\.[a-z0-9]+)$/i, "-thumb$1");
+}
+
 export default function MaterialApplicationGallery({
   applications,
   materialName,
@@ -32,7 +42,7 @@ export default function MaterialApplicationGallery({
             (see .material-gallery-main img in sections.css) restarts —
             the simplest way to get a smooth crossfade without a library. */}
         {/* eslint-disable-next-line @next/next/no-img-element -- static local asset, see MarbleImage.tsx for why plain <img> is used project-wide */}
-        <img key={active.image} src={active.image} alt={active.alt} />
+        <img key={active.image} src={active.image} alt={active.alt} loading="eager" decoding="async" />
       </div>
 
       <div className="material-application-thumbs">
@@ -47,7 +57,7 @@ export default function MaterialApplicationGallery({
           >
             <span className="material-application-thumb-image">
               {/* eslint-disable-next-line @next/next/no-img-element -- see above */}
-              <img src={application.image} alt="" />
+              <img src={thumbSrc(application.image)} alt="" loading="lazy" decoding="async" />
             </span>
             <span className="material-application-thumb-label">{application.label}</span>
           </button>
