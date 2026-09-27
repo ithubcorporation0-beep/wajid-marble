@@ -1,16 +1,15 @@
 // The /materials/[slug] route: one detail page per stone in
-// products.items (src/content/site.ts) — a photo gallery, its category/
-// color, a longer description, and the same quote-request form every
-// service page ends with.
+// products.items (src/content/site.ts) — a 5-application photo gallery,
+// its category/color, a longer description, and the same quote-request
+// form every service page ends with.
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { BreadcrumbItem } from "@/types";
 import { business, products, contact } from "@/content/site";
 import { env } from "@/lib/env";
-import { getMaterialGalleryImages } from "@/lib/materials";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
-import MaterialGallery from "@/components/materials/MaterialGallery";
+import MaterialApplicationGallery from "@/components/materials/MaterialApplicationGallery";
 import Reveal from "@/components/ui/Reveal";
 import QuoteForm from "@/components/forms/QuoteForm";
 
@@ -65,7 +64,7 @@ export default async function MaterialDetailPage({ params }: { params: Promise<{
 
       <section className="section">
         <div className="wrap material-detail-grid">
-          <MaterialGallery images={getMaterialGalleryImages(product)} materialName={product.name} />
+          <MaterialApplicationGallery applications={product.applications} materialName={product.name} />
           <div>
             <dl className="material-specs">
               <div>

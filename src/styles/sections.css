@@ -448,11 +448,11 @@
 
 /* Grid items default to min-width:auto ("at least as wide as my content's
    own minimum width"), not 0 — the same trap documented on .reveal in
-   primitives.css. .material-gallery-thumbs holds non-shrinking (64px,
-   flex-shrink:0) thumbnails whose combined width can exceed the mobile
-   viewport; without this, that width bubbles up through .material-gallery
-   as a grid item and forces the whole page wider instead of letting the
-   thumbs row scroll on its own. */
+   primitives.css. .material-application-thumbs holds non-shrinking
+   (76px, flex-shrink:0) thumbnails whose combined width can exceed the
+   mobile viewport; without this, that width bubbles up through
+   .material-gallery as a grid item and forces the whole page wider
+   instead of letting the thumbs row scroll on its own. */
 .material-gallery{min-width:0;}
 .material-gallery-main{
   position:relative;
@@ -464,52 +464,53 @@
 .material-gallery-main img{width:100%;height:100%;object-fit:cover;animation:material-gallery-fade .35s ease;}
 @keyframes material-gallery-fade{from{opacity:0;}to{opacity:1;}}
 
-/* Prev/next arrows overlaid on the main image. 44px is the standard
-   comfortable touch target size used site-wide (see .btn in
-   primitives.css) — the visible circle is smaller, centered inside it. */
-.material-gallery-arrow{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:44px;height:44px;
+/* 5 labeled application thumbnails (Kitchen/Bathroom/Wall Cladding/
+   Flooring/Staircase — see MaterialApplicationGallery.tsx). Scrolls
+   horizontally rather than wrapping or squeezing on narrow phones, same
+   reasoning as .material-gallery above: 5 non-shrinking thumbnails can be
+   wider than the mobile viewport once the page's own padding is
+   subtracted, and letting that width bubble up would push the whole page
+   wider instead of just this row scrolling on its own. */
+.material-application-thumbs{
   display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  border:1px solid rgba(237,232,222,0.5);
-  background:rgba(16,15,13,0.45);
-  color:var(--stone);
-  cursor:pointer;
-  transition:background .2s ease, border-color .2s ease;
-}
-.material-gallery-arrow:hover{background:rgba(16,15,13,0.7);border-color:var(--gold);}
-.material-gallery-arrow-prev{left:12px;}
-.material-gallery-arrow-next{right:12px;}
-
-.material-gallery-thumbs{
-  display:flex;
-  gap:12px;
-  margin-top:14px;
-  /* 5 thumbnails at 64px + gaps can be tighter than some phones' screen
-     width once the surrounding page padding is subtracted — scroll rather
-     than wrap or squeeze, and never let it push the page itself wider. */
+  gap:14px;
+  margin-top:16px;
   overflow-x:auto;
   padding-bottom:4px;
 }
-.material-gallery-thumb{
+.material-application-thumb{
   flex-shrink:0;
-  width:64px;height:64px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  width:76px;
+  border:none;
+  background:none;
+  padding:0;
+  cursor:pointer;
+}
+.material-application-thumb-image{
+  display:block;
+  width:76px;height:76px;
   border-radius:6px;
   overflow:hidden;
   border:2px solid transparent;
-  padding:0;
-  cursor:pointer;
-  opacity:0.6;
+  opacity:0.65;
   transition:opacity .2s ease, border-color .2s ease;
 }
-.material-gallery-thumb img{width:100%;height:100%;object-fit:cover;}
-.material-gallery-thumb:hover{opacity:0.85;}
-.material-gallery-thumb.active{opacity:1;border-color:var(--gold);}
+.material-application-thumb-image img{width:100%;height:100%;object-fit:cover;}
+.material-application-thumb:hover .material-application-thumb-image{opacity:0.9;}
+.material-application-thumb.active .material-application-thumb-image{opacity:1;border-color:var(--gold);}
+.material-application-thumb-label{
+  font-size:0.68rem;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--taupe);
+  text-align:center;
+  transition:color .2s ease;
+}
+.material-application-thumb.active .material-application-thumb-label{color:var(--gold);}
 .material-specs{
   display:flex;
   flex-direction:column;

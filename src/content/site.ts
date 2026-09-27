@@ -19,6 +19,7 @@ import type {
   HeaderContent,
   HeroContent,
   MarbleTexture,
+  MaterialApplication,
   NavLink,
   ProductsContent,
   ReasonsContent,
@@ -209,6 +210,23 @@ const greyGraniteTexture: MarbleTexture = {
   veinOpacity: 0.9,
 };
 
+// Builds the 5-application gallery (see MaterialApplicationGallery.tsx)
+// every product needs on its /materials/[slug] page — same 5 slots, same
+// order and labels for every stone, just a different id/name baked into
+// the path and alt text. See the PLACEHOLDER NOTICE on MaterialApplication
+// in src/types/index.ts: these paths are real today (each currently
+// points at a duplicate of the product's existing photo), but every one
+// is meant to be overwritten with a real, distinct application photo.
+function materialApplications(id: string, name: string): MaterialApplication[] {
+  return [
+    { type: "kitchen", label: "Kitchen", image: `/materials/${id}/kitchen.jpg`, alt: `${name} used in a kitchen` },
+    { type: "bathroom", label: "Bathroom", image: `/materials/${id}/bathroom.jpg`, alt: `${name} used in a bathroom` },
+    { type: "wall", label: "Wall Cladding", image: `/materials/${id}/wall.jpg`, alt: `${name} used for wall cladding` },
+    { type: "flooring", label: "Flooring", image: `/materials/${id}/flooring.jpg`, alt: `${name} used as flooring` },
+    { type: "staircase", label: "Staircase", image: `/materials/${id}/staircase.jpg`, alt: `${name} used for a staircase` },
+  ];
+}
+
 export const products: ProductsContent = {
   eyebrow: "Our Materials",
   heading: "Natural Stone Collection",
@@ -228,6 +246,7 @@ export const products: ProductsContent = {
       photoSrc: "/products/white-carrara-marble.jpg",
       href: "/materials/white-carrara-marble",
       featured: true,
+      applications: materialApplications("white-carrara-marble", "White Carrara Marble"),
       category: "Marble",
       color: "White",
       description:
@@ -241,6 +260,7 @@ export const products: ProductsContent = {
       photoSrc: "/products/black-marble.jpg",
       href: "/materials/black-marble",
       featured: true,
+      applications: materialApplications("black-marble", "Black Marble"),
       category: "Marble",
       color: "Black",
       description:
@@ -254,6 +274,7 @@ export const products: ProductsContent = {
       photoSrc: "/products/golden-onyx.jpg",
       href: "/materials/golden-onyx",
       featured: true,
+      applications: materialApplications("golden-onyx", "Golden Onyx"),
       category: "Onyx",
       color: "Golden",
       description:
@@ -267,6 +288,7 @@ export const products: ProductsContent = {
       photoSrc: "/products/grey-granite.jpg",
       href: "/materials/grey-granite",
       featured: true,
+      applications: materialApplications("grey-granite", "Grey Granite"),
       category: "Granite",
       color: "Grey",
       description:
@@ -284,6 +306,7 @@ export const products: ProductsContent = {
       photoSrc: "/products/white-veined-marble.jpg",
       href: "/materials/white-veined-marble",
       featured: true,
+      applications: materialApplications("white-veined-marble", "White Veined Marble"),
       category: "Marble",
       color: "White",
       description:
@@ -296,6 +319,7 @@ export const products: ProductsContent = {
       photoSrc: "/products/green-granite.jpg",
       href: "/materials/green-granite",
       featured: true,
+      applications: materialApplications("green-granite", "Green Granite"),
       category: "Granite",
       color: "Green",
       description:
@@ -308,6 +332,7 @@ export const products: ProductsContent = {
       photoSrc: "/products/beige-travertine.jpg",
       href: "/materials/beige-travertine",
       featured: true,
+      applications: materialApplications("beige-travertine", "Beige Travertine"),
       category: "Marble",
       color: "Beige",
       description:
@@ -320,6 +345,7 @@ export const products: ProductsContent = {
       photoSrc: "/products/dark-grey-marble.jpg",
       href: "/materials/charcoal-grey-marble",
       featured: true,
+      applications: materialApplications("charcoal-grey-marble", "Charcoal Grey Marble"),
       category: "Marble",
       color: "Charcoal Grey",
       description:
@@ -334,6 +360,7 @@ export const products: ProductsContent = {
       // Not in the homepage's 8-item showcase grid (kept to a clean 4x2
       // layout) — still fully live on /materials and its own detail page.
       featured: false,
+      applications: materialApplications("deep-red-marble", "Deep Red Marble"),
       category: "Marble",
       color: "Red",
       description:

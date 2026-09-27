@@ -167,13 +167,41 @@ export interface Product {
    * regardless of this flag — it only controls the smaller homepage
    * highlight, which is deliberately capped at 8 for a clean 4x2 grid. */
   featured: boolean;
+  /** Exactly 5 real-world application photos of this stone (kitchen,
+   * bathroom, wall cladding, flooring, staircase, in that order) shown
+   * as the detail page's gallery — see MaterialApplicationGallery.tsx
+   * and the comment on MaterialApplication below for the current
+   * placeholder-image situation. */
+  applications: MaterialApplication[];
 }
 
 /** One image in a material's detail-page gallery. Every product has the
  * same fixed count (see GALLERY_IMAGE_COUNT in src/lib/materials.ts).
- * Path convention: /materials/<product.id>/<n>.jpg. */
+ * Path convention: /materials/<product.id>/<n>.jpg. Used for the
+ * /materials catalog card thumbnail — the detail page itself now uses
+ * MaterialApplication below instead. */
 export interface MaterialGalleryImage {
   src: string;
+  alt: string;
+}
+
+/** One real-world application photo in a material's detail-page gallery
+ * (see MaterialApplicationGallery.tsx and the `applications` array on
+ * Product above). Path convention:
+ * /materials/<product.id>/<type>.jpg — e.g. /materials/black-marble/kitchen.jpg.
+ *
+ * PLACEHOLDER NOTICE: the real, distinct application photos for each
+ * material haven't been supplied yet. Until they are, every `image`
+ * below points at a physical copy of that same product's existing
+ * /materials/<id>/1.jpg — a real, already-approved photo of the stone,
+ * not an invented one — so the gallery never shows a broken image. To
+ * add the real photos, just save each one over its matching file under
+ * public/materials/<id>/ (e.g. public/materials/black-marble/kitchen.jpg)
+ * with the same filename — no code change needed here at all. */
+export interface MaterialApplication {
+  type: "kitchen" | "bathroom" | "wall" | "flooring" | "staircase";
+  label: string;
+  image: string;
   alt: string;
 }
 
