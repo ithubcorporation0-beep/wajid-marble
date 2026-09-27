@@ -41,11 +41,10 @@ const phones = {
   secondary: "923018197466",
 } as const;
 
-/** Turns "923136146176" into the familiar local "0313-6146176" for display. */
+/** Turns "923136146176" into "+92 313-6146176" for display. */
 function formatLocalPhone(internationalDigits: string): string {
   const withoutCountryCode = internationalDigits.replace(/^92/, "");
-  const local = `0${withoutCountryCode}`;
-  return `${local.slice(0, 4)}-${local.slice(4)}`;
+  return `+92 ${withoutCountryCode.slice(0, 3)}-${withoutCountryCode.slice(3)}`;
 }
 
 export const business: Business = {
