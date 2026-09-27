@@ -69,7 +69,7 @@ export const business: Business = {
     role: "Zonal Vice Chairman, Mardan",
   },
   phones,
-  whatsappNumber: phones.secondary,
+  whatsappNumber: phones.primary,
   email: "nihadali6146176@gmail.com",
   serviceAreas: ["Mardan", "Nowshera", "Charsadda", "Swabi", "Peshawar"],
   seoDescription:
