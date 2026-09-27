@@ -28,6 +28,23 @@ a{text-decoration:none;color:inherit;}
 ul{list-style:none;}
 img,svg{display:block;max-width:100%;}
 
+/* Removes the default grey/blue flash Chrome for Android draws over
+   whatever you tap — the site already has its own hover/active states
+   (and :focus-visible below still shows a real outline for keyboard
+   users), so that flash is just visual noise on top of them, not a
+   substitute for either. */
+a,button{-webkit-tap-highlight-color:transparent;}
+
+/* Every :hover effect on this site (buttons, cards, thumbnails) is
+   invisible on a touchscreen — there's no cursor to hover with — so
+   without this, tapping something gives no feedback at all until
+   whatever it does (navigate, submit, switch an image) finishes.
+   Scoped to hover:none so it only applies on touch-primary devices and
+   never changes how anything feels with a mouse. */
+@media (hover:none){
+  a:active,button:active{opacity:0.7;transition:opacity .1s ease;}
+}
+
 /* ---------- reduced motion ---------- */
 @media (prefers-reduced-motion: reduce){
   *{animation:none !important; transition:none !important;}
