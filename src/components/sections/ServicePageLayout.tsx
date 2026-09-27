@@ -8,6 +8,7 @@ import { contact } from "@/content/site";
 import type { BreadcrumbItem, ServicePageContent } from "@/types";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Reveal from "@/components/ui/Reveal";
+import FaqAccordion from "@/components/ui/FaqAccordion";
 import QuoteForm from "@/components/forms/QuoteForm";
 
 export default function ServicePageLayout({
@@ -82,14 +83,7 @@ export default function ServicePageLayout({
         <div className="wrap">
           <Reveal>
             <h2>{content.faq.heading}</h2>
-            <div className="faq-list">
-              {content.faq.items.map((item) => (
-                <div className="faq-item" key={item.question}>
-                  <h3>{item.question}</h3>
-                  <p>{item.answer}</p>
-                </div>
-              ))}
-            </div>
+            <FaqAccordion items={content.faq.items} />
           </Reveal>
         </div>
       </section>

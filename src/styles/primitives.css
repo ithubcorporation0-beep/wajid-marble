@@ -206,12 +206,49 @@
 .info-card h3{font-size:1.05rem;margin-bottom:8px;font-weight:500;}
 .info-card p{font-size:0.88rem;color:var(--taupe);line-height:1.6;}
 
-/* ---------- FAQ list (service pages + FAQPage schema in FaqJsonLd.tsx) ---------- */
+/* ---------- FAQ accordion (service pages + FAQPage schema in
+   FaqJsonLd.tsx) — see FaqAccordion.tsx. Only one answer is open at a
+   time; the answer's height animates via grid-template-rows going from
+   0fr to 1fr, which (unlike max-height) needs no guessed pixel value and
+   animates smoothly to the answer's real height whatever that is. */
 .faq-list{margin-top:32px;}
-.faq-item{
-  padding:22px 0;
-  border-top:1px solid var(--line);
-}
+.faq-item{border-top:1px solid var(--line);}
 .faq-item:last-child{border-bottom:1px solid var(--line);}
-.faq-item h3{font-size:1.02rem;margin-bottom:8px;font-weight:500;}
-.faq-item p{font-size:0.92rem;color:var(--taupe);line-height:1.65;margin:0;}
+.faq-question{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:22px 0;
+  background:none;
+  border:none;
+  color:inherit;
+  text-align:left;
+  cursor:pointer;
+}
+.faq-question h3{font-size:1.02rem;font-weight:500;}
+.faq-icon{
+  position:relative;
+  flex-shrink:0;
+  width:18px;height:18px;
+  transition:transform .3s ease;
+}
+.faq-icon::before,.faq-icon::after{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  background:var(--charcoal);
+  transform:translate(-50%,-50%);
+}
+.faq-icon::before{width:14px;height:1.5px;}
+.faq-icon::after{width:1.5px;height:14px;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-answer-wrap{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .35s ease;
+}
+.faq-item.open .faq-answer-wrap{grid-template-rows:1fr;}
+.faq-answer-inner{overflow:hidden;}
+.faq-answer-inner p{padding:0 0 22px;font-size:0.92rem;color:var(--taupe);line-height:1.65;margin:0;}
