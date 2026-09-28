@@ -6,7 +6,7 @@ import Link from "next/link";
 import { business, footer, navLinks } from "@/content/site";
 import { pageNavLinks } from "@/content/pages";
 
-const FOOTER_LINK_HREFS = new Set(["/#about", "/#products", "/#contact"]);
+const FOOTER_LINK_HREFS = new Set(["/#about", "/materials", "/#contact"]);
 
 export default function SiteFooter() {
   const footerLinks = navLinks.filter((link) => FOOTER_LINK_HREFS.has(link.href));

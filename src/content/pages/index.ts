@@ -32,18 +32,16 @@ export const servicePages: ServicePageContent[] = [
  * appears in the footer/drawer nav (see navLinks in src/content/site.ts). */
 export const contactPageLink: NavLink = { label: "Request a Quote", href: "/contact" };
 
-/** The /materials catalog (src/app/materials/) isn't a ServicePageContent
- * either — it's built directly from products.items in site.ts — but it
- * needs a nav entry the same way the contact page does. The per-stone
- * detail pages (/materials/<id>) aren't listed individually in nav; they're
- * reached by clicking through from here or from a homepage hexagon. */
-export const materialsPageLink: NavLink = { label: "Materials", href: "/materials" };
-
 /** Every non-homepage page's nav entry, in the order they should appear in
- * the footer and mobile drawer. */
+ * the footer and mobile drawer. The /materials catalog isn't listed here —
+ * it already has its own entry in navLinks (the "Products" link, which
+ * points straight at /materials instead of anchor-scrolling the homepage)
+ * — so listing it again here would just show the same page twice under a
+ * different label. The per-stone detail pages (/materials/<id>) aren't
+ * listed individually in nav either way; they're reached by clicking
+ * through from the catalog or a homepage hexagon. */
 export const pageNavLinks: NavLink[] = [
   ...servicePages.map((page) => ({ label: page.navLabel, href: `/${page.slug}` })),
-  materialsPageLink,
   contactPageLink,
 ];
 

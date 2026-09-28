@@ -88,7 +88,7 @@ export const business: Business = {
 // anywhere on the site.
 export const navLinks: NavLink[] = [
   { label: "About", href: "/#about" },
-  { label: "Products", href: "/#products" },
+  { label: "Products", href: "/materials" },
   { label: "Gallery", href: "/#gallery" },
   { label: "Why Us", href: "/#why" },
   { label: "Contact", href: "/#contact" },
