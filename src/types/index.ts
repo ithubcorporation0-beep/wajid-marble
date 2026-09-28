@@ -211,14 +211,25 @@ export interface ProductsContent extends SectionIntro {
 
 export interface GalleryTile {
   id: string;
-  /** Matches one of the .g1–.g7 classes in sections.css that size the tile
-   * in the mosaic grid. */
+  /** A stable per-tile class name (g1, g2, ...) — sections.css no longer
+   * sizes tiles individually by it (all tiles in .gallery-grid are equal
+   * width now), but it's kept as a hook a future redesign could use to
+   * size one tile differently again. */
   gridClass: string;
-  viewBox: string;
-  texture: MarbleTexture;
-  /** Describes the stone shown in this tile for screen readers — the tile
-   * is otherwise a purely decorative procedural texture with no visible
-   * text of its own, unlike a product card. */
+  /** Unused by the current renderer (MarbleImage draws a plain <img>, not
+   * a live SVG) — kept only because older tiles still carry one. Never
+   * set it on a new tile. */
+  viewBox?: string;
+  /** A procedural feTurbulence recipe — omit when `photoSrc` is set
+   * instead, same convention as Product in this file. */
+  texture?: MarbleTexture;
+  /** Path to a real photo under /public (e.g. "/gallery/kitchen.jpg"),
+   * for tiles showing an actual installation photo instead of a
+   * generated texture. Takes priority over `texture`. */
+  photoSrc?: string;
+  /** Describes what's shown in this tile for screen readers — the tile
+   * is otherwise a purely decorative image with no visible text of its
+   * own, unlike a product card. */
   alt: string;
 }
 
